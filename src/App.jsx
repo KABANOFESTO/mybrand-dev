@@ -4,7 +4,7 @@ import Home from './Components/Home';
 import Footer from './Components/Footer';
 import Navbar from './Components/Navbar';
 
-const MAINTENANCE_MODE = true;
+const MAINTENANCE_MODE = false;
 
 function MaintenancePage() {
   return (
