@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import festo from '../assets/images/f.jpg';
 import $ from 'jquery';
 import '../tools/Typerwriter';
@@ -56,17 +56,17 @@ const Banner = () => {
     }, []);
     return (
         <>
-            <section class="w-full py-5 min-h-full body-section " id='home' >
-                <div class="container d-flex justify-content-center align-items-center  homeBody">
-                    <div class="row align-items-center ">
-                        <div class="col-md-6">
-                            <div class="card mx-auto">
-                                <div class="card-body text-start" style={{ alignItems: 'center'}}>
-                                    <h1 class="card-title">Hey! My name is</h1>
+            <section className="w-full py-5 min-h-full body-section " id='home' >
+                <div className="container d-flex justify-content-center align-items-center  homeBody">
+                    <div className="row align-items-center ">
+                        <div className="col-md-6">
+                            <div className="card mx-auto">
+                                <div className="card-body text-start" style={{ alignItems: 'center'}}>
+                                    <h1 className="card-title">Hey! My name is</h1>
                                     <h4 className='text-success'>KABANO  Festo</h4>
-                                    <p class="card-text">A results-driven software developer with a fervor for creating robust and innovative solutions.  My journey in the realm of coding started when i was in High school, Where
+                                    <p className="card-text">A results-driven software developer with a fervor for creating robust and innovative solutions.  My journey in the realm of coding started when i was in High school, Where
                                         i got first test of Coding.</p>
-                                    <div class="button-container">
+                                    <div className="button-container">
 
                                         <Link style={{ textDecoration: 'none' }}>
                                             <ScrollLink
@@ -86,11 +86,11 @@ const Banner = () => {
                                             </ScrollLink>
                                         </Link>
                                     </div>
-                                    <div class="social-media mt-4">
-                                        <a class="social-item" href="https://www.facebook.com/kabano.festo"><i class="bi bi-facebook"></i></a>
-                                        <a class="social-item" href="https://www.linkedin.com/in/festo-kabano-3b5150251/"><i class="bi bi-linkedin"></i></a>
-                                        <a class="social-item" href="https://github.com/KABANOFESTO"><i class="bi bi-github"></i></a>
-                                        <a class="social-item" href="https://www.instagram.com/kbb.32/"><i class="bi bi-instagram"></i></a>
+                                    <div className="social-media mt-4">
+                                        <a className="social-item" href="https://www.facebook.com/kabano.festo"><i className="bi bi-facebook"></i></a>
+                                        <a className="social-item" href="https://www.linkedin.com/in/festo-kabano-3b5150251/"><i className="bi bi-linkedin"></i></a>
+                                        <a className="social-item" href="https://github.com/KABANOFESTO"><i className="bi bi-github"></i></a>
+                                        <a className="social-item" href="https://www.instagram.com/kbb.32/"><i className="bi bi-instagram"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -104,8 +104,8 @@ const Banner = () => {
                         </div>
                     </div>
                 </div>
-                <div class="d-flex justify-content-center align-items-center">
-                    <div class="copyRight text-center">
+                <div className="d-flex justify-content-center align-items-center">
+                    <div className="copyRight text-center">
                         <p id="typewriteText" ref={typewriteTextRef}></p>
                         <p>“Means with coding, I can do whatever you want: Just DM me”</p>
                     </div>
