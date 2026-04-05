@@ -282,7 +282,7 @@ nav {
   height: 50%;
   background: transparent;
   border: .2rem solid white;
-  border-radius: 50%;
+  border-radius: 10%;
   font-size: 2rem;
   color: var(--main-color);
   margin: 3rem 1.5rem 3rem 0;
