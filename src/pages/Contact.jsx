@@ -13,7 +13,7 @@ const Contact = () => {
                     <span className="section-eyebrow">Contact</span>
                     <h2 className="section-title display-title">Let&apos;s exchange ideas and build something valuable</h2>
                     <p className="section-intro">
-                        I&apos;m open to internships, junior developer roles, freelance projects, and collaborative opportunities.
+                        I&apos;m open to internships,developer roles, freelance projects, and collaborative opportunities.
                     </p>
                 </div>
 
