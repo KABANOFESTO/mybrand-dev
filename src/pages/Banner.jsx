@@ -72,8 +72,9 @@ const Banner = () => {
                             </p>
 
                             <div className="hero-chip-row">
+                                <span className="hero-chip">Backend</span>
+                                <span className="hero-chip">Machine Learning</span>
                                 <span className="hero-chip">Frontend Craft</span>
-                                <span className="hero-chip">Responsive UI</span>
                                 <span className="hero-chip">Clean Code</span>
                             </div>
 
