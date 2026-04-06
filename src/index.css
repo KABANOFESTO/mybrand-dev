@@ -60,6 +60,7 @@ nav {
   vertical-align: inherit;
   padding: 20px;
   list-style: none;
+  cursor: pointer;
 }
 
 .nav-link {
