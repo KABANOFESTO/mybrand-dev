@@ -61,24 +61,20 @@ const Banner = () => {
             <div className="hero-orb hero-orb-two"></div>
 
             <div className="container hero-shell">
-                <div className="row align-items-center g-5">
-                    <div className="col-lg-7">
+                <div className="row align-items-center g-4">
+                    <div className="col-lg-6">
                         <div className="hero-copy">
-                            <span className="hero-kicker">Software Developer Portfolio</span>
-                            <h1 className="hero-title">
-                                Designing and building digital products that feel
-                                <span className="hero-title-accent"> modern, reliable, and memorable.</span>
-                            </h1>
+                            <span className="hero-kicker">Hello</span>
                             <h2 className="hero-name">Kabano Festo</h2>
                             <p className="hero-description">
-                                I create recruiter-ready web experiences with clean code, thoughtful UX, and polished visual direction,
-                                helping ideas become products that people trust and enjoy using.
+                                I create clean, responsive, recruiter-ready interfaces with strong attention to usability,
+                                visual quality, and dependable implementation.
                             </p>
 
                             <div className="hero-chip-row">
                                 <span className="hero-chip">Frontend Craft</span>
                                 <span className="hero-chip">Responsive UI</span>
-                                <span className="hero-chip">Problem Solving</span>
+                                <span className="hero-chip">Clean Code</span>
                             </div>
 
                             <div className="hero-actions">
@@ -105,18 +101,12 @@ const Banner = () => {
                                 <a className="social-item" href="https://www.facebook.com/kabano.festo" target="_blank" rel="noreferrer" aria-label="Facebook"><i className="bi bi-facebook"></i></a>
                                 <a className="social-item" href="https://www.linkedin.com/in/festo-kabano-3b5150251/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i className="bi bi-linkedin"></i></a>
                                 <a className="social-item" href="https://github.com/KABANOFESTO" target="_blank" rel="noreferrer" aria-label="GitHub"><i className="bi bi-github"></i></a>
-                                <a className="social-item" href="https://www.instagram.com/kbb.32/" target="_blank" rel="noreferrer" aria-label="Instagram"><i className="bi bi-instagram"></i></a>
                             </div>
                         </div>
                     </div>
 
-                    <div className="col-lg-5">
+                    <div className="col-lg-6">
                         <div className="hero-visual-wrap">
-                            <div className="hero-floating-card hero-floating-card-top">
-                                <span className="hero-floating-label">Current Focus</span>
-                                <strong>Scalable, recruiter-ready experiences</strong>
-                            </div>
-
                             <div className="hero-visual-card">
                                 <div className="hero-image-glow"></div>
                                 <img
@@ -126,27 +116,8 @@ const Banner = () => {
                                 />
                                 <div className="hero-visual-grid"></div>
                             </div>
-
-                            <div className="hero-floating-card hero-floating-card-bottom">
-                                <div>
-                                    <span className="hero-floating-label">Value</span>
-                                    <strong>From clean UI to working product</strong>
-                                </div>
-                                <div className="hero-mini-metrics">
-                                    <span>Creative</span>
-                                    <span>Reliable</span>
-                                    <span>Focused</span>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div className="hero-bottom-strip">
-                <div className="copyRight text-center hero-quote-box">
-                    <p ref={typewriteTextRef}></p>
-                    <p>I turn ideas into sharp, usable interfaces that help teams and brands stand out with confidence.</p>
                 </div>
             </div>
         </section>
