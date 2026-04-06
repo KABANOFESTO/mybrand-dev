@@ -1,42 +1,57 @@
 import me from '../assets/images/festo.jfif';
-import '../CSS/style.css';
+
+const strengths = [
+    'Full-stack mindset with strong frontend execution',
+    'Clean, responsive interfaces that feel production-ready',
+    'Collaborative delivery with debugging and QA discipline',
+];
 
 const About = () => {
     return (
-        <>
-            <section id='about'>
-                <div class="about-outline" >
-                    <div class="container-fluid big-padding about-cover d-flex justify-content-center align-items-center">
-                        <div class="container">
-                            <div class="row about-row d-flex">
-                                <div class="d-flex justify-content-center align-items-center col-md-5 ps-0 ps-lg-5 image">
-                                    <img src={me} alt="" class="img-fluid" />
+        <section id="about" className="portfolio-section about-section">
+            <div className="container">
+                <div className="section-heading">
+                    <span className="section-eyebrow">About Me</span>
+                    <h2 className="section-title display-title">Developer with product taste and delivery focus</h2>
+                    <p className="section-intro">
+                        I build digital experiences that balance visual quality, usability, and dependable code so products
+                        feel polished from the first impression to the last interaction.
+                    </p>
+                </div>
+
+                <div className="about-grid">
+                    <div className="about-portrait-shell">
+                        <div className="about-portrait-card">
+                            <div className="about-portrait-glow"></div>
+                            <img src={me} alt="Kabano Festo" className="about-portrait" />
+                        </div>
+                    </div>
+
+                    <div className="about-panel">
+                        <p>
+                            I am a software developer who enjoys turning concepts into practical, high-quality products. My
+                            experience covers planning, interface design, implementation, testing, and continuous improvement,
+                            which helps me contribute across the full delivery cycle.
+                        </p>
+                        <p>
+                            My background includes hands-on learning in web development, backend fundamentals, and project
+                            execution with tools such as JavaScript, Python, Django, Git, and modern UI workflows. I care
+                            about building software that feels intuitive for users and reliable for teams.
+                        </p>
+
+                        <div className="about-strengths">
+                            {strengths.map((strength) => (
+                                <div className="about-strength-card" key={strength}>
+                                    <i className="bi bi-stars"></i>
+                                    <span>{strength}</span>
                                 </div>
-                                <div class="col-md-7 view detailat text-justify d-flex flex-column" >
-                                    <h1 class="fw-bold">About Me!</h1>
-                                    <h3>My goal is to develop solutions that bridge divides and unite people through the power of technology.</h3>
-                                    <p>As a dedicated software developer with two years of coding experience, I excel in managing all
-                                        phases of the development process, from project planning to design, construction, and testing,
-                                        ensuring high-quality and functional outcomes. My collaborative approach in multi-functional
-                                        teams enables me to efficiently identify and resolve bugs and functionality issues.</p>
-                                    <p id='s'>During my time as a Full Stack Developer through Coursera (Oct 2022 - Oct 2023), I immersed
-                                        myself in web development technologies like HTML, CSS, JavaScript, and Django. I contributed
-                                        to web-based projects, enhancing my skills in front-end and back-end development, and
-                                        developed proficiency in version control using Git and GitHub. At solve it in Kigali City (May 2018 -
-                                        Jan 2019), I participated in an intensive training program, mastering programming languages
-                                        such as Python, Visual Basic, and C++, and gained hands-on experience in software development
-                                        methodologies.</p>
-                                    <p>My core skills include HTML, CSS, JavaScript, Python, Django, Node.js, and Git and GitHub. I
-                                        possess strong technical analysis and quality assurance skills and am an effective team player known
-                                        for resolving bugs collaboratively.</p>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </div>
-            </section>
-        </>
+            </div>
+        </section>
     );
-}
+};
 
 export default About;

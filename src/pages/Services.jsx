@@ -1,82 +1,51 @@
-import React, { useEffect, useRef } from 'react';
+const services = [
+    {
+        icon: 'language',
+        title: 'Web Development',
+        description: 'Modern, responsive websites and platforms that look sharp and work smoothly across devices.',
+    },
+    {
+        icon: 'devices',
+        title: 'UI Implementation',
+        description: 'Clean frontend experiences translated from ideas or designs into polished user-facing products.',
+    },
+    {
+        icon: 'deployed_code',
+        title: 'Custom Solutions',
+        description: 'Tailored software features that solve real workflow, business, or operational problems.',
+    },
+    {
+        icon: 'hub',
+        title: 'System Integration',
+        description: 'Connecting tools, data, and interfaces so products feel consistent and efficient end to end.',
+    },
+];
 
 const Services = () => {
-    const headingRef = useRef(null);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
-                    }
-                });
-            },
-            { threshold: 0.5 }
-        );
-
-        if (headingRef.current) {
-            observer.observe(headingRef.current);
-        }
-        return () => {
-            if (headingRef.current) {
-                observer.unobserve(headingRef.current);
-            }
-        };
-    }, []);
-
-    const handleMouseOver = (event) => {
-        const icon = event.currentTarget.querySelector('.icon');
-        if (icon) {
-            icon.style.color = '#000';
-        }
-    };
-
-    const handleMouseOut = (event) => {
-        const icon = event.currentTarget.querySelector('.icon');
-        if (icon) {
-            icon.style.color = '';
-        }
-    };
-
     return (
-        <>
-            <section id="service" className="d-flex justify-content-center align-items-center min-vh-100">
-                <div className="container text-center service-content">
-                    <h6 className="section-title mb-4 text-success" ref={headingRef}>Expert Services Showcase</h6>
-                    <p className="mb-5 pb-4 text-white">
-                        I'm an expert software developer offering custom solutions, web and mobile apps, and seamless integration to elevate your business's digital presence.
+        <section id="service" className="portfolio-section services-section">
+            <div className="container">
+                <div className="section-heading">
+                    <span className="section-eyebrow">Services</span>
+                    <h2 className="section-title display-title">What I can help a team build</h2>
+                    <p className="section-intro">
+                        I focus on useful software, thoughtful interfaces, and dependable implementation that supports real business goals.
                     </p>
-                    <div className="services-grid">
-                        <div className="custom-card card border" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-                            <div className="card-body1">
-                                <span className="icon material-symbols-outlined">language</span>
-                                <h5>Web development</h5>
-                            </div>
-                        </div>
-                        <div className="custom-card card border" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-                            <div className="card-body1">
-                                <span className="icon material-symbols-outlined">contact_phone</span>
-                                <h5>Mobile development</h5>
-                            </div>
-                        </div>
-                        <div className="custom-card card border" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-                            <div className="card-body1">
-                                <span className="icon material-symbols-outlined">support_agent</span>
-                                <h5>Custom Software Development</h5>
-                            </div>
-                        </div>
-                        <div className="custom-card card border" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-                            <div className="card-body1">
-                                <span className="icon material-symbols-outlined">terminal</span>
-                                <h5>System Integration</h5>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <hr />
-            </section>
-        </>
+
+                <div className="services-showcase">
+                    {services.map((service) => (
+                        <article className="service-card" key={service.title}>
+                            <div className="service-icon-wrap">
+                                <span className="icon material-symbols-outlined service-icon">{service.icon}</span>
+                            </div>
+                            <h3>{service.title}</h3>
+                            <p>{service.description}</p>
+                        </article>
+                    ))}
+                </div>
+            </div>
+        </section>
     );
 };
 

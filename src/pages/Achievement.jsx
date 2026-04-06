@@ -1,78 +1,147 @@
-import React, { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import commerce from '../assets/images/e.jpg';
 import hotel from '../assets/images/hotel.jpeg';
-import '../CSS/style.css';
+import web from '../assets/images/web.jpg';
+import solve from '../assets/images/solve.png';
+import developer from '../assets/images/developer.png';
+
+const projects = [
+    {
+        title: 'E-commerce Experience',
+        category: 'Web Platform',
+        image: commerce,
+        description: 'A shopping experience focused on clean browsing, conversion-friendly layout, and clear product presentation.',
+        impact: 'Designed to make catalog-heavy interfaces feel faster, simpler, and more trustworthy.',
+        stack: ['React', 'JavaScript', 'Responsive UI'],
+        link: 'https://e-comm-team-emma25-fe.netlify.app/',
+    },
+    {
+        title: 'Hotel Management System',
+        category: 'Operations Software',
+        image: hotel,
+        description: 'A hospitality-oriented interface concept for reservations, guest workflows, and streamlined management tasks.',
+        impact: 'Built around efficiency, staff usability, and better service coordination.',
+        stack: ['Frontend UI', 'Workflow Design', 'Data Views'],
+    },
+    {
+        title: 'Responsive Web Design Projects',
+        category: 'Portfolio Work',
+        image: web,
+        description: 'A collection of modern interfaces built to remain clean, readable, and engaging on every screen size.',
+        impact: 'Shows consistency in layout systems, mobile responsiveness, and visual hierarchy.',
+        stack: ['HTML', 'CSS', 'Design Systems'],
+    },
+    {
+        title: 'Software Training Projects',
+        category: 'Technical Growth',
+        image: solve,
+        description: 'Hands-on programming projects developed while sharpening problem solving and implementation fundamentals.',
+        impact: 'Demonstrates discipline, adaptability, and a strong foundation across multiple technologies.',
+        stack: ['Python', 'C++', 'Logic Building'],
+    },
+    {
+        title: 'Developer Brand Experience',
+        category: 'Personal Portfolio',
+        image: developer,
+        description: 'A recruiter-facing portfolio experience designed to position technical ability with stronger presentation.',
+        impact: 'Combines code quality, storytelling, and visual direction to improve first impressions.',
+        stack: ['React', 'UX Writing', '3D UI Styling'],
+    },
+];
 
 const Achievement = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+
     useEffect(() => {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
+        const interval = window.setInterval(() => {
+            setCurrentIndex((current) => (current + 1) % projects.length);
+        }, 5000);
 
-        const achievementTitle = document.getElementById('achievement-title');
-        if (achievementTitle) {
-            observer.observe(achievementTitle);
-        }
-
-        return () => {
-            if (achievementTitle) {
-                observer.unobserve(achievementTitle);
-            }
-        };
+        return () => window.clearInterval(interval);
     }, []);
 
+    const goToSlide = (index) => setCurrentIndex(index);
+    const nextSlide = () => setCurrentIndex((current) => (current + 1) % projects.length);
+    const previousSlide = () => setCurrentIndex((current) => (current - 1 + projects.length) % projects.length);
+
     return (
-        <>
-            <section className="commerce justify-content-center align-items-center" id='achievement'>
-                <div className='container text-center achieve'>
-                    <h2 id="achievement-title" className="section-title mb-4 text-success">Remarkable Achievements Showcase</h2>
+        <section className="portfolio-section achievement-section" id="achievement">
+            <div className="container">
+                <div className="section-heading">
+                    <span className="section-eyebrow">Projects</span>
+                    <h2 className="section-title display-title">Remarkable Achievements Showcase</h2>
+                    <p className="section-intro">
+                        A sliding presentation of selected work so you can keep adding projects without overcrowding the page.
+                    </p>
                 </div>
 
-                <br />
-                <div className="container d-flex justify-content-center align-items-center comm">
-                    <div className="row about-row d-flex">
+                <div className="project-slider-shell">
+                    <button type="button" className="project-slider-arrow project-slider-arrow-left" onClick={previousSlide} aria-label="Previous project">
+                        <i className="bi bi-arrow-left"></i>
+                    </button>
 
-                        <div className="d-flex justify-content-center align-items-center col-md-5 ps-0 ps-lg-5 imageB">
-                            <a href="https://e-comm-team-emma25-fe.netlify.app/">
-                                <img src={commerce} alt="" className="img-fluid animating" style={{ cursor: 'pointer' }} />
-                            </a>
-                        </div>
+                    <div className="project-slider-window">
+                        <div
+                            className="project-slider-track"
+                            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                        >
+                            {projects.map((project) => (
+                                <article className="project-slide" key={project.title}>
+                                    <div className="project-slide-grid">
+                                        <div className="project-visual-card">
+                                            <span className="project-badge">{project.category}</span>
+                                            <img src={project.image} alt={project.title} className="project-image" />
+                                        </div>
 
-                        <div className="col-md-7 text-white text-justify d-flex flex-column">
-                            <h1 className="fw-bold text-success">E-commerce</h1>
-                            <h3>My aim is to create solutions that connect and unite people using the power of technology.</h3>
-                            <p>As a committed software developer with two years of coding expertise, I excel in handling all
-                                stages of the development process, from project planning to design, construction, and testing,
-                                ensuring high-quality and effective results. My collaborative approach within multi-functional
-                                teams allows me to quickly identify and resolve bugs and functionality issues.</p>
+                                        <div className="project-content-card">
+                                            <h3>{project.title}</h3>
+                                            <p>{project.description}</p>
+                                            <div className="project-impact-card">
+                                                <span>Why it matters</span>
+                                                <strong>{project.impact}</strong>
+                                            </div>
 
+                                            <div className="project-stack">
+                                                {project.stack.map((item) => (
+                                                    <span key={item}>{item}</span>
+                                                ))}
+                                            </div>
+
+                                            <div className="project-actions">
+                                                {project.link ? (
+                                                    <a href={project.link} target="_blank" rel="noreferrer" className="hero-primary-btn project-link-btn">
+                                                        Live Preview
+                                                    </a>
+                                                ) : (
+                                                    <span className="project-muted-note">Private or concept work available during interview discussion.</span>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            ))}
                         </div>
                     </div>
+
+                    <button type="button" className="project-slider-arrow project-slider-arrow-right" onClick={nextSlide} aria-label="Next project">
+                        <i className="bi bi-arrow-right"></i>
+                    </button>
                 </div>
-                <div className="container d-flex justify-content-center align-items-center" >
-                    <div className="row about-row d-flex h">
-                        <div className="col-md-7 text-white text-justify d-flex flex-column">
-                            <h1 className="fw-bold text-success">Hotel Management</h1>
-                            <h3>Streamlining Operations with Innovative Software Solutions</h3>
-                            <p>In the dynamic hospitality industry, efficient hotel management is crucial for delivering exceptional guest experiences.
-                                As a dedicated software developer with two years of coding experience, I specialize in developing cutting-edge solutions
-                                that revolutionize hotel operations. From seamless check-in and checkout processes to personalized guest services and robust
-                                inventory management, my goal is to create intuitive and user-friendly applications that enhance productivity
-                                and guest satisfaction.</p>
-                        </div>
-                        <div className="d-flex justify-content-center align-items-center col-md-5 ps-0 ps-lg-5 p imageB">
-                            <img src={hotel} alt="" className="img-fluid animating" />
-                        </div>
-                    </div>
+
+                <div className="project-slider-dots" aria-label="Project navigation">
+                    {projects.map((project, index) => (
+                        <button
+                            type="button"
+                            key={project.title}
+                            className={`project-dot ${index === currentIndex ? 'active' : ''}`}
+                            onClick={() => goToSlide(index)}
+                            aria-label={`Go to ${project.title}`}
+                        />
+                    ))}
                 </div>
-            </section>
-        </>
+            </div>
+        </section>
     );
-}
+};
 
 export default Achievement;

@@ -8,24 +8,16 @@ import Services from "../pages/Services";
 
 const Home = () => {
     return (
-        <>
+        <main className="portfolio-page">
             <Banner />
-            <hr />
             <About />
-            <hr />
             <Services />
-            <hr />
             <Achievement />
-            <hr />
             <Experience />
-            <hr />
             <Certificates />
-            <br /><br /><br />
-            <br /><br />
-            <hr />
             <Contact />
-        </>
+        </main>
     );
-}
+};
 
 export default Home;
