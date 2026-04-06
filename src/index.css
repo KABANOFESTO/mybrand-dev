@@ -861,6 +861,7 @@ hr {
 
 .content {
   position: relative;
+  padding-top: 84px;
 }
 
 .portfolio-section {
@@ -917,26 +918,28 @@ hr {
 }
 
 .portfolio-navbar {
-  padding: 18px 0;
-  background: rgba(4, 12, 20, 0.72);
+  padding: 10px 0;
+  background: rgba(4, 12, 20, 0.64);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
-  backdrop-filter: blur(16px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+  backdrop-filter: blur(14px);
 }
 
 .portfolio-navbar-inner {
   gap: 1rem;
+  min-height: 58px;
 }
 
 .portfolio-brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 0.65rem;
   cursor: pointer;
 }
 
 .portfolio-brand span {
   color: #f8fcff;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.04em;
 }
@@ -1020,9 +1023,14 @@ hr {
   gap: 0.35rem;
 }
 
+.portfolio-nav-list .nav-item {
+  margin-left: 0;
+}
+
 .portfolio-nav-link {
   color: rgba(248, 252, 255, 0.82);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  padding: 0.7rem 0.9rem;
   text-transform: none;
 }
 
@@ -1035,8 +1043,8 @@ hr {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 46px;
-  padding: 0.7rem 1.1rem;
+  min-height: 42px;
+  padding: 0.62rem 1rem;
   border-radius: 14px;
   text-decoration: none;
   font-weight: 600;
@@ -1531,15 +1539,27 @@ hr {
 
 @media (max-width: 991px) {
   .portfolio-navbar {
-    padding: 14px 0;
+    padding: 8px 0;
   }
 
   .navbar-collapse {
-    margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 18px;
-    background: rgba(4, 12, 20, 0.96);
+    margin-top: 0.75rem;
+    padding: 0.85rem;
+    border-radius: 16px;
+    background: rgba(4, 12, 20, 0.94);
     border: 1px solid rgba(255, 255, 255, 0.08);
+    max-height: calc(100vh - 88px);
+    overflow-y: auto;
+  }
+
+  .portfolio-nav-list {
+    align-items: stretch !important;
+  }
+
+  .portfolio-nav-link,
+  .portfolio-resume-btn {
+    width: 100%;
+    justify-content: center;
   }
 
   .experience-grid {
@@ -1548,8 +1568,31 @@ hr {
 }
 
 @media (max-width: 767.98px) {
+  .content {
+    padding-top: 76px;
+  }
+
   .portfolio-section {
     padding: 88px 0;
+  }
+
+  .portfolio-navbar-inner {
+    min-height: 52px;
+  }
+
+  .portfolio-brand span {
+    font-size: 0.94rem;
+  }
+
+  .logoNav {
+    width: 42px;
+    height: 46px;
+  }
+
+  .portfolio-toggler {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
   }
 
   .services-showcase,
