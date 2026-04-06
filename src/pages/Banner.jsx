@@ -99,9 +99,10 @@ const Banner = () => {
                             </div>
 
                             <div className="social-media hero-socials">
-                                <a className="social-item" href="https://www.facebook.com/kabano.festo" target="_blank" rel="noreferrer" aria-label="Facebook"><i className="bi bi-facebook"></i></a>
                                 <a className="social-item" href="https://www.linkedin.com/in/festo-kabano-3b5150251/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i className="bi bi-linkedin"></i></a>
                                 <a className="social-item" href="https://github.com/KABANOFESTO" target="_blank" rel="noreferrer" aria-label="GitHub"><i className="bi bi-github"></i></a>
+                                <a className="social-item" href="https://www.instagram.com/kabano.festo/" target="_blank" rel="noreferrer" aria-label="Instagram"><i className="bi bi-instagram"></i></a>
+                                <a className="social-item" href="https://www.facebook.com/kabano.festo" target="_blank" rel="noreferrer" aria-label="Facebook"><i className="bi bi-facebook"></i></a>
                             </div>
                         </div>
                     </div>
