@@ -38,7 +38,11 @@ const Navbar = () => {
                     aria-label="Toggle navigation"
                     aria-expanded={isOpen}
                 >
-                    <span className="navbar-toggler-icon"></span>
+                    <span className="portfolio-toggler-box" aria-hidden="true">
+                        <span className="portfolio-toggler-line"></span>
+                        <span className="portfolio-toggler-line"></span>
+                        <span className="portfolio-toggler-line"></span>
+                    </span>
                 </button>
 
                 <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`}>
