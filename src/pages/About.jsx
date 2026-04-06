@@ -1,7 +1,7 @@
 import me from '../assets/images/festo.jfif';
 
 const strengths = [
-    'Full-stack mindset with strong frontend execution',
+    'Full-stack mindset with strong Backend And Machine Learning execution',
     'Clean, responsive interfaces that feel production-ready',
     'Collaborative delivery with debugging and QA discipline',
 ];
