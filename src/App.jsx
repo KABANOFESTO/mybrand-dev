@@ -1,7 +1,9 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './App.css';
 import Home from './Components/Home';
 import Footer from './Components/Footer';
+import Login from './Components/Login';
 import Navbar from './Components/Navbar';
 
 const MAINTENANCE_MODE = false;
@@ -53,6 +55,27 @@ function MaintenancePage() {
     );
 }
 
+const NO_LAYOUT_ROUTES = ['/login'];
+
+function Layout({ children }) {
+    const location = useLocation();
+    const hideLayout = NO_LAYOUT_ROUTES.includes(location.pathname);
+
+    return (
+        <div className="App">
+            {!hideLayout && <Navbar />}
+            <div className="content">
+                {children}
+            </div>
+            {!hideLayout && <Footer />}
+        </div>
+    );
+}
+
+Layout.propTypes = {
+    children: PropTypes.node.isRequired,
+};
+
 function App() {
     if (MAINTENANCE_MODE) {
         return <MaintenancePage />;
@@ -60,15 +83,12 @@ function App() {
 
     return (
         <Router>
-            <div className="App">
-                <Navbar />
-                <div className="content">
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                    </Routes>
-                </div>
-                <Footer />
-            </div>
+            <Layout>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+                </Routes>
+            </Layout>
         </Router>
     );
 }
