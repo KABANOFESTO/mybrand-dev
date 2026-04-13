@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../CSS/auth.css";
+import "../../CSS/auth.css";
 
 const SOCIAL_PROVIDERS = [
   { id: "google", label: "Google" },

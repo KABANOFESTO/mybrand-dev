@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './App.css';
 import Home from './Components/Home';
 import Footer from './Components/Footer';
-import Login from './Components/Login';
+import Login from './pages/auth/Login';
 import Navbar from './Components/Navbar';
 
 const MAINTENANCE_MODE = false;
