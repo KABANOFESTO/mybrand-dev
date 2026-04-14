@@ -4,6 +4,7 @@ import './App.css';
 import Home from './Components/Home';
 import Footer from './Components/Footer';
 import Login from './pages/auth/Login';
+import Signup from './pages/auth/Signup';
 import Navbar from './Components/Navbar';
 
 const MAINTENANCE_MODE = false;
@@ -55,7 +56,7 @@ function MaintenancePage() {
     );
 }
 
-const NO_LAYOUT_ROUTES = ['/login'];
+const NO_LAYOUT_ROUTES = ['/login', '/signup'];
 
 function Layout({ children }) {
     const location = useLocation();
@@ -87,6 +88,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<Signup />} />
                 </Routes>
             </Layout>
         </Router>
