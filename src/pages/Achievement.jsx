@@ -11,7 +11,6 @@ const projects = [
         category: 'Web Platform',
         image: commerce,
         description: 'A shopping experience focused on clean browsing, conversion-friendly layout, and clear product presentation.',
-        impact: 'Designed to make catalog-heavy interfaces feel faster, simpler, and more trustworthy.',
         stack: ['React', 'JavaScript', 'Responsive UI'],
         link: 'https://e-comm-team-emma25-fe.netlify.app/',
     },
@@ -20,15 +19,14 @@ const projects = [
         category: 'Operations Software',
         image: hotel,
         description: 'A hospitality-oriented interface concept for reservations, guest workflows, and streamlined management tasks.',
-        impact: 'Built around efficiency, staff usability, and better service coordination.',
         stack: ['Frontend UI', 'Workflow Design', 'Data Views'],
+        // link: 'https://e-comm-team-emma25-fe.netlify.app/',
     },
     {
         title: 'Responsive Web Design Projects',
         category: 'Portfolio Work',
         image: web,
         description: 'A collection of modern interfaces built to remain clean, readable, and engaging on every screen size.',
-        impact: 'Shows consistency in layout systems, mobile responsiveness, and visual hierarchy.',
         stack: ['HTML', 'CSS', 'Design Systems'],
     },
     {
@@ -36,7 +34,6 @@ const projects = [
         category: 'Technical Growth',
         image: solve,
         description: 'Hands-on programming projects developed while sharpening problem solving and implementation fundamentals.',
-        impact: 'Demonstrates discipline, adaptability, and a strong foundation across multiple technologies.',
         stack: ['Python', 'C++', 'Logic Building'],
     },
     {
@@ -44,7 +41,6 @@ const projects = [
         category: 'Personal Portfolio',
         image: developer,
         description: 'A recruiter-facing portfolio experience designed to position technical ability with stronger presentation.',
-        impact: 'Combines code quality, storytelling, and visual direction to improve first impressions.',
         stack: ['React', 'UX Writing', '3D UI Styling'],
     },
 ];
@@ -96,10 +92,6 @@ const Achievement = () => {
                                         <div className="project-content-card">
                                             <h3>{project.title}</h3>
                                             <p>{project.description}</p>
-                                            <div className="project-impact-card">
-                                                <span>Why it matters</span>
-                                                <strong>{project.impact}</strong>
-                                            </div>
 
                                             <div className="project-stack">
                                                 {project.stack.map((item) => (
