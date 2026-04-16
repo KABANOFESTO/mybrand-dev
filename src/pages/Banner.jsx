@@ -65,10 +65,9 @@ const Banner = () => {
                     <div className="col-lg-6">
                         <div className="hero-copy">
                             <span className="hero-kicker">Hello</span>
-                            <h2 className="hero-name">Kabano Festo</h2>
+                            <h2 className="hero-name">my name is Kabano Festo</h2>
                             <p className="hero-description">
-                                I create clean, responsive, recruiter-ready interfaces with strong attention to usability,
-                                visual quality, and dependable implementation.
+                                A full-stack developer passionate about building intelligent, scalable, and user focused solutions
                             </p>
 
                             <div className="hero-chip-row">
