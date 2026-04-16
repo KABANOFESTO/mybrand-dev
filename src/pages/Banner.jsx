@@ -106,7 +106,7 @@ const Banner = () => {
                         </div>
                     </div>
 
-                    <div className="col-lg-6">
+                    <div className="col-lg-6 d-none d-lg-block">
                         <div className="hero-visual-wrap">
                             <div className="hero-visual-card">
                                 <div className="hero-image-glow"></div>
