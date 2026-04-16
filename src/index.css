@@ -2316,3 +2316,74 @@ hr {
     margin-top: 1rem;
   }
 }
+
+.experience-pagination-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.experience-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.experience-pagination-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.experience-page-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 50%;
+  color: #f8fcff;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(10px);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.experience-page-arrow:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.experience-pagination-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
+.experience-page-dot {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.experience-page-dot.active {
+  width: 34px;
+  background: linear-gradient(135deg, #9de6da 0%, #ffc971 100%);
+}
+
+@media (max-width: 767.98px) {
+  .experience-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-pagination-controls {
+    gap: 0.75rem;
+    margin-top: 1.2rem;
+  }
+
+  .experience-page-arrow {
+    width: 44px;
+    height: 44px;
+  }
+}
