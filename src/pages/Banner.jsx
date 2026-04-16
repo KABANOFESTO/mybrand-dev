@@ -67,7 +67,7 @@ const Banner = () => {
                             <span className="hero-kicker">Hello My name is</span>
                             <h2 className="hero-name">KABANO Festo</h2>
                             <p className="hero-description">
-                                A full-stack developer passionate about building intelligent, scalable, and user focused solutions
+                                A full-stack developer who enjoys building smart, scalable, and user-friendly solutions.
                             </p>
 
                             <div className="hero-chip-row">
