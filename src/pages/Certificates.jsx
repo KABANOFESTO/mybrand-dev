@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import c1 from '../assets/images/back.jpg';
 import c2 from '../assets/images/javascript.jpg';
 import c3 from '../assets/images/web.jpg';
@@ -26,7 +27,44 @@ const certificates = [
     },
 ];
 
+const getCardsPerView = () => {
+    if (typeof window === 'undefined') return 3;
+    if (window.innerWidth < 768) return 1;
+    if (window.innerWidth < 1200) return 2;
+    return 3;
+};
+
 const Certificates = () => {
+    const [cardsPerView, setCardsPerView] = useState(getCardsPerView);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            const nextCardsPerView = getCardsPerView();
+            setCardsPerView(nextCardsPerView);
+            setCurrentIndex((current) => Math.min(current, Math.max(certificates.length - nextCardsPerView, 0)));
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    useEffect(() => {
+        if (isPaused) return undefined;
+
+        const maxIndex = Math.max(certificates.length - cardsPerView, 0);
+        const interval = window.setInterval(() => {
+            setCurrentIndex((current) => (current >= maxIndex ? 0 : current + 1));
+        }, 3600);
+
+        return () => window.clearInterval(interval);
+    }, [cardsPerView, isPaused]);
+
+    const maxIndex = Math.max(certificates.length - cardsPerView, 0);
+    const goPrevious = () => setCurrentIndex((current) => (current <= 0 ? maxIndex : current - 1));
+    const goNext = () => setCurrentIndex((current) => (current >= maxIndex ? 0 : current + 1));
+
     return (
         <section className="portfolio-section certificates-section" id="certificates">
             <div className="container">
@@ -38,17 +76,50 @@ const Certificates = () => {
                     </p>
                 </div>
 
-                <div className="certificate-grid">
-                    {certificates.map((certificate) => (
-                        <article className="certificate-card" key={certificate.title}>
-                            <div className="certificate-image-shell">
-                                <img src={certificate.image} alt={certificate.title} className="certificate-image" />
-                            </div>
-                            <div className="certificate-content">
-                                <span>{certificate.provider}</span>
-                                <h3>{certificate.title}</h3>
-                            </div>
-                        </article>
+                <div
+                    className="certificates-carousel-shell"
+                    onMouseEnter={() => setIsPaused(true)}
+                    onMouseLeave={() => setIsPaused(false)}
+                >
+                    <button type="button" className="certificates-carousel-arrow" onClick={goPrevious} aria-label="Previous certificate">
+                        <i className="bi bi-arrow-left"></i>
+                    </button>
+
+                    <div className="certificates-carousel-window">
+                        <div
+                            className="certificate-grid certificates-carousel-track"
+                            style={{ transform: `translateX(-${(currentIndex * 100) / cardsPerView}%)` }}
+                        >
+                            {certificates.map((certificate) => (
+                                <div className="certificate-slide" key={certificate.title} style={{ width: `${100 / cardsPerView}%` }}>
+                                    <article className="certificate-card certificate-card-scroll">
+                                        <div className="certificate-image-shell">
+                                            <img src={certificate.image} alt={certificate.title} className="certificate-image" />
+                                        </div>
+                                        <div className="certificate-content">
+                                            <span>{certificate.provider}</span>
+                                            <h3>{certificate.title}</h3>
+                                        </div>
+                                    </article>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <button type="button" className="certificates-carousel-arrow" onClick={goNext} aria-label="Next certificate">
+                        <i className="bi bi-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div className="certificates-carousel-dots">
+                    {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+                        <button
+                            type="button"
+                            key={index}
+                            className={`certificates-carousel-dot ${index === currentIndex ? 'active' : ''}`}
+                            onClick={() => setCurrentIndex(index)}
+                            aria-label={`Go to certificate set ${index + 1}`}
+                        />
                     ))}
                 </div>
             </div>

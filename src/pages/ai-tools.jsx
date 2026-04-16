@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 const codeReviewImage = '/code-review.jpg';
 const skillAnalyzerImage = '/skill-analyzer.jpg';
 const resumeGeneratorImage = '/ai-resume.png';
@@ -30,7 +32,44 @@ const tools = [
     },
 ];
 
+const getCardsPerView = () => {
+    if (typeof window === 'undefined') return 3;
+    if (window.innerWidth < 768) return 1;
+    if (window.innerWidth < 1200) return 2;
+    return 3;
+};
+
 const AiTools = () => {
+    const [cardsPerView, setCardsPerView] = useState(getCardsPerView);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            const nextCardsPerView = getCardsPerView();
+            setCardsPerView(nextCardsPerView);
+            setCurrentIndex((current) => Math.min(current, Math.max(tools.length - nextCardsPerView, 0)));
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    useEffect(() => {
+        if (isPaused) return undefined;
+
+        const maxIndex = Math.max(tools.length - cardsPerView, 0);
+        const interval = window.setInterval(() => {
+            setCurrentIndex((current) => (current >= maxIndex ? 0 : current + 1));
+        }, 3400);
+
+        return () => window.clearInterval(interval);
+    }, [cardsPerView, isPaused]);
+
+    const maxIndex = Math.max(tools.length - cardsPerView, 0);
+    const goPrevious = () => setCurrentIndex((current) => (current <= 0 ? maxIndex : current - 1));
+    const goNext = () => setCurrentIndex((current) => (current >= maxIndex ? 0 : current + 1));
+
     return (
         <section className="portfolio-section ai-tools-section" id="ai-tools">
             <div className="container">
@@ -43,25 +82,58 @@ const AiTools = () => {
                     </p>
                 </div>
 
-                <div className="ai-tools-grid">
-                    {tools.map((tool) => (
-                        <article className="ai-tool-card" key={tool.title}>
-                            <div className="ai-tool-image-shell">
-                                <img src={tool.image} alt={tool.title} className="ai-tool-image" />
-                                <div className="ai-tool-image-overlay">
-                                    <span>Enjoy Life With Me!👨</span>
+                <div
+                    className="ai-tools-carousel-shell"
+                    onMouseEnter={() => setIsPaused(true)}
+                    onMouseLeave={() => setIsPaused(false)}
+                >
+                    <button type="button" className="ai-tools-carousel-arrow" onClick={goPrevious} aria-label="Previous AI tool">
+                        <i className="bi bi-arrow-left"></i>
+                    </button>
+
+                    <div className="ai-tools-carousel-window">
+                        <div
+                            className="ai-tools-grid ai-tools-carousel-track"
+                            style={{ transform: `translateX(-${(currentIndex * 100) / cardsPerView}%)` }}
+                        >
+                            {tools.map((tool) => (
+                                <div className="ai-tool-slide" key={tool.title} style={{ width: `${100 / cardsPerView}%` }}>
+                                    <article className="ai-tool-card">
+                                        <div className="ai-tool-image-shell">
+                                            <img src={tool.image} alt={tool.title} className="ai-tool-image" />
+                                            <div className="ai-tool-image-overlay">
+                                                <span>AI Feature</span>
+                                            </div>
+                                        </div>
+                                        <div className="ai-tool-icon-wrap">
+                                            <i className={`bi ${tool.icon}`}></i>
+                                        </div>
+                                        <h3>{tool.title}</h3>
+                                        <p>{tool.description}</p>
+                                        <a href="/signup" className="ai-tool-btn">
+                                            Try now
+                                            <i className="bi bi-arrow-up-right"></i>
+                                        </a>
+                                    </article>
                                 </div>
-                            </div>
-                            <div className="ai-tool-icon-wrap">
-                                <i className={`bi ${tool.icon}`}></i>
-                            </div>
-                            <h3>{tool.title}</h3>
-                            <p>{tool.description}</p>
-                            <a href="/signup" className="ai-tool-btn">
-                                Try now
-                                <i className="bi bi-arrow-up-right"></i>
-                            </a>
-                        </article>
+                            ))}
+                        </div>
+                    </div>
+
+                    <button type="button" className="ai-tools-carousel-arrow" onClick={goNext} aria-label="Next AI tool">
+                        <i className="bi bi-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div className="ai-tools-carousel-dots">
+                    {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+                        <button
+                            type="button"
+                            key={index}
+                            className={`ai-tools-carousel-dot ${index === currentIndex ? 'active' : ''}`}
+                            onClick={() => setCurrentIndex(index)}
+                            aria-label={`Go to AI tool set ${index + 1}`}
+                        />
                     ))}
                 </div>
             </div>
