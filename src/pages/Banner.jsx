@@ -64,8 +64,8 @@ const Banner = () => {
                 <div className="row align-items-center g-4">
                     <div className="col-lg-6">
                         <div className="hero-copy">
-                            <span className="hero-kicker">Hello</span>
-                            <h2 className="hero-name">my name is Kabano Festo</h2>
+                            <span className="hero-kicker">Hello My name is</span>
+                            <h2 className="hero-name">KABANO Festo</h2>
                             <p className="hero-description">
                                 A full-stack developer passionate about building intelligent, scalable, and user focused solutions
                             </p>
