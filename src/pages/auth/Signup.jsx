@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import "../../CSS/auth.css";
+import logo from "/home.png";
 
 const validateSignupForm = ({ fullName, email, password, confirmPassword }) => {
   if (!fullName.trim()) return "Please enter your full name.";
@@ -137,19 +138,11 @@ function SignupPage() {
             <div className="pip pip-2" />
             <div className="pip pip-1" />
           </div>
-
-          <div className="logo-box" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="12" r="9" stroke="#5b8cde" strokeWidth="1.5" />
-              <circle cx="12" cy="12" r="5" stroke="#5b8cde" strokeWidth="1" opacity="0.45" />
-              <circle cx="12" cy="12" r="2" fill="#5b8cde" />
-              <line x1="12" y1="3" x2="12" y2="6" stroke="#5b8cde" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />
-              <line x1="12" y1="18" x2="12" y2="21" stroke="#5b8cde" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />
-              <line x1="3" y1="12" x2="6" y2="12" stroke="#5b8cde" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />
-              <line x1="18" y1="12" x2="21" y2="12" stroke="#5b8cde" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />
-            </svg>
-          </div>
-
+          <a href="/" className="logo-box" aria-hidden="true">
+            <div className="logo-box" aria-hidden="true">
+              <img src={logo} alt="Logo" className="logo-img" />
+            </div>
+          </a>
           <div className="logo-pip-group logo-pip-group-reverse" aria-hidden="true">
             <div className="pip pip-3" />
             <div className="pip pip-2" />

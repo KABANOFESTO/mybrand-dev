@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../../CSS/auth.css";
+import logo from "/home.png";
 
 const SOCIAL_PROVIDERS = [
   { id: "google", label: "Google" },
@@ -150,19 +151,11 @@ function LoginPage() {
             <div className="pip pip-2" />
             <div className="pip pip-1" />
           </div>
-
-          <div className="logo-box" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="12" r="9" stroke="#5b8cde" strokeWidth="1.5" />
-              <circle cx="12" cy="12" r="5" stroke="#5b8cde" strokeWidth="1" opacity="0.45" />
-              <circle cx="12" cy="12" r="2" fill="#5b8cde" />
-              <line x1="12" y1="3" x2="12" y2="6" stroke="#5b8cde" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />
-              <line x1="12" y1="18" x2="12" y2="21" stroke="#5b8cde" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />
-              <line x1="3" y1="12" x2="6" y2="12" stroke="#5b8cde" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />
-              <line x1="18" y1="12" x2="21" y2="12" stroke="#5b8cde" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />
-            </svg>
-          </div>
-
+          <a href="/" className="logo-box" aria-hidden="true">
+            <div className="logo-box" aria-hidden="true">
+              <img src={logo} alt="Logo" className="logo-img" />
+            </div>
+          </a>
           <div className="logo-pip-group logo-pip-group-reverse" aria-hidden="true">
             <div className="pip pip-3" />
             <div className="pip pip-2" />
@@ -173,7 +166,7 @@ function LoginPage() {
         <header className="login-header">
           <h1 className="login-title">Welcome Back</h1>
           <p className="login-sub">
-            Don&apos;t have an account yet? <a href="#signup">Sign up</a>
+            Don&apos;t have an account yet? <a href="/signup">Sign up</a>
           </p>
         </header>
 
@@ -229,7 +222,7 @@ function LoginPage() {
           </div>
 
           <div className="forgot-row">
-            <a href="#forgot-password">Forgot password?</a>
+            <a href="/forgot-password">Forgot password?</a>
           </div>
 
           <button type="submit" className="btn-login" disabled={loading}>
@@ -255,9 +248,8 @@ function LoginPage() {
             </button>
           ))}
         </div>
-
         <p className="terms-note">
-          <a href="#privacy">Privacy Policy</a>.
+          By creating an account, you agree to our <a href="#terms">Terms of Service</a> and <a href="#privacy">Privacy Policy</a>.
         </p>
       </div>
     </section>
