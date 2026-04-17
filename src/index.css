@@ -273,7 +273,7 @@ nav {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #9de6da;
+  color: #ffc971;
   background: rgba(255, 255, 255, 0.08);
 }
 
@@ -344,7 +344,7 @@ nav {
 
 .hero-primary-btn {
   color: #062131;
-  background: linear-gradient(135deg, #9de6da 0%, #ffc971 100%);
+  background: #9de6da 0%;
   box-shadow: 0 20px 30px rgba(255, 201, 113, 0.2);
 }
 
@@ -911,7 +911,7 @@ hr {
   margin-bottom: 1rem;
   background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #9de6da;
+  color: #ffc971;
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -1054,7 +1054,7 @@ hr {
 
 .portfolio-nav-link:hover,
 .portfolio-nav-link.active {
-  color: #9de6da;
+  color: #ffc971;
 }
 
 .portfolio-resume-btn {
@@ -1206,7 +1206,7 @@ hr {
 
 .service-icon {
   font-size: 2rem;
-  color: #9de6da;
+  color: #ffc971;
 }
 
 .service-card h3,
@@ -1281,7 +1281,7 @@ hr {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #062131;
-  background: linear-gradient(135deg, #9de6da 0%, #ffc971 100%);
+  background: #9de6da 0%;
 }
 
 .project-image {
@@ -1315,7 +1315,7 @@ hr {
 .project-muted-note {
   display: block;
   margin-bottom: 0.35rem;
-  color: #9de6da;
+  color: #ffc971;
   font-size: 0.9rem;
 }
 
@@ -1376,7 +1376,7 @@ hr {
 
 .project-dot.active {
   width: 34px;
-  background: linear-gradient(135deg, #9de6da 0%, #ffc971 100%);
+  background: #ffc971 100%;
 }
 
 .experience-grid,
@@ -1693,7 +1693,7 @@ hr {
 
 .ai-tool-icon-wrap i {
   font-size: 1.8rem;
-  color: #9de6da;
+  color: #ffc971;
 }
 
 .ai-tool-card h3 {
@@ -1716,7 +1716,7 @@ hr {
   text-decoration: none;
   font-weight: 600;
   color: #062131;
-  background: linear-gradient(135deg, #9de6da 0%, #ffc971 100%);
+  background: #9de6da 0%;
   box-shadow: 0 18px 28px rgba(255, 201, 113, 0.16);
 }
 
@@ -1833,7 +1833,7 @@ hr {
   height: 4px;
   margin-bottom: 1.2rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, #9de6da 0%, #ffc971 100%);
+  background: #ffc971 100%;
 }
 
 .service-icon-wrap {
@@ -1851,7 +1851,7 @@ hr {
 
 .service-icon {
   font-size: 2rem;
-  color: #9de6da;
+  color: #ffc971;
 }
 
 .service-count {
@@ -1992,7 +1992,7 @@ hr {
 
 .services-carousel-dot.active {
   width: 34px;
-  background: linear-gradient(135deg, #9de6da 0%, #ffc971 100%);
+  background:  #9de6da 0%;
 }
 
 .service-card-scroll {
@@ -2139,7 +2139,7 @@ hr {
 .ai-tools-carousel-dot.active,
 .certificates-carousel-dot.active {
   width: 34px;
-  background: linear-gradient(135deg, #9de6da 0%, #ffc971 100%);
+  background:#ffc971 100%;
 }
 
 .ai-tool-card {
@@ -2369,7 +2369,7 @@ hr {
 
 .experience-page-dot.active {
   width: 34px;
-  background: linear-gradient(135deg, #9de6da 0%, #ffc971 100%);
+  background:#ffc971 100%;
 }
 
 @media (max-width: 767.98px) {
@@ -2572,4 +2572,12 @@ hr {
 
 .experience-section {
   width: 100%;
+}
+
+
+
+.portfolio-navbar .portfolio-nav-link.active,
+.portfolio-navbar .portfolio-nav-link.active:hover,
+.portfolio-navbar .navbar-nav .nav-link.portfolio-nav-link.active {
+  color: #ffc971 !important;
 }

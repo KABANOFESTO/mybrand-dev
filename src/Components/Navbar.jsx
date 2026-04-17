@@ -52,8 +52,11 @@ const Navbar = () => {
                             <li className="nav-item" key={item.target}>
                                 <ScrollLink
                                     to={item.target}
+                                    spy={true}
                                     smooth={true}
                                     duration={500}
+                                    offset={-95}
+                                    activeClass="active"
                                     className="nav-link portfolio-nav-link"
                                     onClick={closeNavbar}
                                 >
@@ -64,7 +67,6 @@ const Navbar = () => {
                         <li className="nav-item">
                             <div className="nav-pill-group">
                                 <a href="/festo.pdf" download="Kabano-Festo-Resume" className="nav-btn nav-btn-resume">
-                                    {/* Download icon */}
                                     <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                                         <path d="M4 2h6l3 3v9H4V2z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" fill="none" />
                                         <path d="M9 2v4h3" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" />
@@ -75,7 +77,6 @@ const Navbar = () => {
                                 <div className="nav-divider" />
                                 <a href="/login" className="nav-btn nav-btn-connect">
                                     Let&apos;s Connect
-                                    {/* Arrow icon */}
                                     <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
                                         <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>

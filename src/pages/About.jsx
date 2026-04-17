@@ -1,21 +1,14 @@
 import me from '../assets/images/festo.jfif';
 
-const strengths = [
-    'Full-stack mindset with strong Backend And Machine Learning execution',
-    'Clean, responsive interfaces that feel production-ready',
-    'Collaborative delivery with debugging and QA discipline',
-];
-
 const About = () => {
     return (
         <section id="about" className="portfolio-section about-section">
             <div className="container">
                 <div className="section-heading">
                     <span className="section-eyebrow">About Me</span>
-                    <h2 className="section-title display-title">Developer with product taste and delivery focus</h2>
+                    <h2 className="section-title display-title">Developer Who Builds and Ships Quality Products</h2>
                     <p className="section-intro">
-                        I build digital experiences that balance visual quality, usability, and dependable code so products
-                        feel polished from the first impression to the last interaction.
+                        Full-stack developer and AI/ML engineer who turns ideas into production .
                     </p>
                 </div>
 
@@ -29,24 +22,11 @@ const About = () => {
 
                     <div className="about-panel">
                         <p>
-                            I am a software developer who enjoys turning concepts into practical, high-quality products. My
-                            experience covers planning, interface design, implementation, testing, and continuous improvement,
-                            which helps me contribute across the full delivery cycle.
+                            I’m a full-stack developer and AI/ML engineer who builds and ships real-world products. I take ideas from concept to production, focusing on systems that are reliable, scalable, and easy to use.
                         </p>
                         <p>
-                            My background includes hands-on learning in web development, backend fundamentals, and project
-                            execution with tools such as JavaScript, Python, Django, Git, and modern UI workflows. I care
-                            about building software that feels intuitive for users and reliable for teams.
+                            I work mainly with JavaScript, Python, and Django, with strong backend and machine learning experience. I care about clean code, intuitive design, and delivering products that are truly ready for users.
                         </p>
-
-                        <div className="about-strengths">
-                            {strengths.map((strength) => (
-                                <div className="about-strength-card" key={strength}>
-                                    <i className="bi bi-stars"></i>
-                                    <span>{strength}</span>
-                                </div>
-                            ))}
-                        </div>
                     </div>
                 </div>
             </div>

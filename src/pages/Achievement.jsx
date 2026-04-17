@@ -67,7 +67,7 @@ const Achievement = () => {
                     <span className="section-eyebrow">Projects</span>
                     <h2 className="section-title display-title">Remarkable Achievements Showcase</h2>
                     <p className="section-intro">
-                        A sliding presentation of selected work so you can keep adding projects without overcrowding the page.
+                        These projects demonstrate my ability to turn ideas into well-built, working products.
                     </p>
                 </div>
 

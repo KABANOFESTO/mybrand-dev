@@ -75,7 +75,7 @@ const AiTools = () => {
             <div className="container">
                 <div className="section-heading">
                     <span className="section-eyebrow">AI Tools</span>
-                    <h2 className="section-title display-title">Practical AI features designed to help candidates stand out</h2>
+                    <h2 className="section-title display-title">AI/ML Tools for Candidate Success</h2>
                     <p className="section-intro">
                         A professional toolkit for improving code quality, understanding your strengths, preparing documents,
                         and practicing for interviews with more confidence.

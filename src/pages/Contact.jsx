@@ -1,7 +1,7 @@
 const contactItems = [
     { icon: 'bi-geo-alt', label: 'Location', value: 'Kigali, Rwanda' },
-    { icon: 'bi-telephone', label: 'Phone', value: '+250 785 206 973' },
-    { icon: 'bi-envelope', label: 'Email', value: 'kabanofesto1@gmail.com' },
+    { icon: 'bi-telephone', label: 'Phone', value: '+250 785206973' },
+    { icon: 'bi-envelope', label: 'Email', value: 'kabanofesto.developer@gmail.com' },
     { icon: 'bi-globe', label: 'Website', value: 'festokabano.vercel.app' },
 ];
 
