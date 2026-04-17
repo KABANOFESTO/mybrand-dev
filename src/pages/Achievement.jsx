@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import commerce from '../assets/images/e.jpg';
 import hotel from '../assets/images/hotel.jpeg';
 import web from '../assets/images/web.jpg';
@@ -11,7 +11,6 @@ const projects = [
         category: 'Web Platform',
         image: commerce,
         description: 'A shopping experience focused on clean browsing, conversion-friendly layout, and clear product presentation.',
-        // stack: ['React', 'JavaScript', 'Responsive UI'],
         link: 'https://e-comm-team-emma25-fe.netlify.app/',
     },
     {
@@ -19,37 +18,57 @@ const projects = [
         category: 'Operations Software',
         image: hotel,
         description: 'A hospitality-oriented interface concept for reservations, guest workflows, and streamlined management tasks.',
-        // stack: ['Frontend UI', 'Workflow Design', 'Data Views'],
     },
     {
         title: 'Responsive Web Design Projects',
         category: 'Portfolio Work',
         image: web,
         description: 'A collection of modern interfaces built to remain clean, readable, and engaging on every screen size.',
-        // stack: ['HTML', 'CSS', 'Design Systems'],
     },
     {
         title: 'Software Training Projects',
         category: 'Technical Growth',
         image: solve,
         description: 'Hands-on programming projects developed while sharpening problem solving and implementation fundamentals.',
-        // stack: ['Python', 'C++', 'Logic Building'],
     },
     {
         title: 'Developer Brand Experience',
         category: 'Personal Portfolio',
         image: developer,
         description: 'A recruiter-facing portfolio experience designed to position technical ability with stronger presentation.',
-        // stack: ['React', 'UX Writing', '3D UI Styling'],
     },
 ];
 
 const Achievement = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const touchStartX = useRef(0);
+    const touchEndX = useRef(0);
 
     const goToSlide = (index) => setCurrentIndex(index);
     const nextSlide = () => setCurrentIndex((current) => (current + 1) % projects.length);
     const previousSlide = () => setCurrentIndex((current) => (current - 1 + projects.length) % projects.length);
+
+    const handleTouchStart = (event) => {
+        touchStartX.current = event.changedTouches[0].clientX;
+    };
+
+    const handleTouchMove = (event) => {
+        touchEndX.current = event.changedTouches[0].clientX;
+    };
+
+    const handleTouchEnd = () => {
+        const swipeDistance = touchStartX.current - touchEndX.current;
+        const swipeThreshold = 50;
+
+        if (swipeDistance > swipeThreshold) {
+            nextSlide();
+        } else if (swipeDistance < -swipeThreshold) {
+            previousSlide();
+        }
+
+        touchStartX.current = 0;
+        touchEndX.current = 0;
+    };
 
     return (
         <section className="portfolio-section achievement-section" id="achievement">
@@ -67,7 +86,7 @@ const Achievement = () => {
                         <i className="bi bi-arrow-left"></i>
                     </button>
 
-                    <div className="project-slider-window">
+                    <div className="project-slider-window" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
                         <div
                             className="project-slider-track"
                             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -83,12 +102,6 @@ const Achievement = () => {
                                         <div className="project-content-card">
                                             <h3>{project.title}</h3>
                                             <p>{project.description}</p>
-
-                                            {/* <div className="project-stack">
-                                                {project.stack.map((item) => (
-                                                    <span key={item}>{item}</span>
-                                                ))}
-                                            </div> */}
 
                                             <div className="project-actions">
                                                 {project.link ? (

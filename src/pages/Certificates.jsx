@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import c1 from '../assets/images/back.jpg';
 import c2 from '../assets/images/javascript.jpg';
 import c3 from '../assets/images/web.jpg';
@@ -37,7 +37,8 @@ const getCardsPerView = () => {
 const Certificates = () => {
     const [cardsPerView, setCardsPerView] = useState(getCardsPerView);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [isPaused, setIsPaused] = useState(false);
+    const touchStartX = useRef(0);
+    const touchEndX = useRef(0);
 
     useEffect(() => {
         const handleResize = () => {
@@ -50,20 +51,31 @@ const Certificates = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    useEffect(() => {
-        if (isPaused) return undefined;
-
-        const maxIndex = Math.max(certificates.length - cardsPerView, 0);
-        const interval = window.setInterval(() => {
-            setCurrentIndex((current) => (current >= maxIndex ? 0 : current + 1));
-        }, 3600);
-
-        return () => window.clearInterval(interval);
-    }, [cardsPerView, isPaused]);
-
     const maxIndex = Math.max(certificates.length - cardsPerView, 0);
     const goPrevious = () => setCurrentIndex((current) => (current <= 0 ? maxIndex : current - 1));
     const goNext = () => setCurrentIndex((current) => (current >= maxIndex ? 0 : current + 1));
+
+    const handleTouchStart = (event) => {
+        touchStartX.current = event.changedTouches[0].clientX;
+    };
+
+    const handleTouchMove = (event) => {
+        touchEndX.current = event.changedTouches[0].clientX;
+    };
+
+    const handleTouchEnd = () => {
+        const swipeDistance = touchStartX.current - touchEndX.current;
+        const swipeThreshold = 50;
+
+        if (swipeDistance > swipeThreshold) {
+            goNext();
+        } else if (swipeDistance < -swipeThreshold) {
+            goPrevious();
+        }
+
+        touchStartX.current = 0;
+        touchEndX.current = 0;
+    };
 
     return (
         <section className="portfolio-section certificates-section" id="certificates">
@@ -76,16 +88,12 @@ const Certificates = () => {
                     </p>
                 </div>
 
-                <div
-                    className="certificates-carousel-shell"
-                    onMouseEnter={() => setIsPaused(true)}
-                    onMouseLeave={() => setIsPaused(false)}
-                >
+                <div className="certificates-carousel-shell">
                     <button type="button" className="certificates-carousel-arrow" onClick={goPrevious} aria-label="Previous certificate">
                         <i className="bi bi-arrow-left"></i>
                     </button>
 
-                    <div className="certificates-carousel-window">
+                    <div className="certificates-carousel-window" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
                         <div
                             className="certificate-grid certificates-carousel-track"
                             style={{ transform: `translateX(-${(currentIndex * 100) / cardsPerView}%)` }}

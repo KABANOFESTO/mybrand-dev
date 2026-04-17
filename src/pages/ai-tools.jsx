@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const codeReviewImage = '/code-review.jpg';
 const skillAnalyzerImage = '/skill-analyzer.jpg';
@@ -42,6 +42,8 @@ const getCardsPerView = () => {
 const AiTools = () => {
     const [cardsPerView, setCardsPerView] = useState(getCardsPerView);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const touchStartX = useRef(0);
+    const touchEndX = useRef(0);
 
     useEffect(() => {
         const handleResize = () => {
@@ -57,6 +59,28 @@ const AiTools = () => {
     const maxIndex = Math.max(tools.length - cardsPerView, 0);
     const goPrevious = () => setCurrentIndex((current) => (current <= 0 ? maxIndex : current - 1));
     const goNext = () => setCurrentIndex((current) => (current >= maxIndex ? 0 : current + 1));
+
+    const handleTouchStart = (event) => {
+        touchStartX.current = event.changedTouches[0].clientX;
+    };
+
+    const handleTouchMove = (event) => {
+        touchEndX.current = event.changedTouches[0].clientX;
+    };
+
+    const handleTouchEnd = () => {
+        const swipeDistance = touchStartX.current - touchEndX.current;
+        const swipeThreshold = 50;
+
+        if (swipeDistance > swipeThreshold) {
+            goNext();
+        } else if (swipeDistance < -swipeThreshold) {
+            goPrevious();
+        }
+
+        touchStartX.current = 0;
+        touchEndX.current = 0;
+    };
 
     return (
         <section className="portfolio-section ai-tools-section" id="ai-tools">
@@ -75,7 +99,7 @@ const AiTools = () => {
                         <i className="bi bi-arrow-left"></i>
                     </button>
 
-                    <div className="ai-tools-carousel-window">
+                    <div className="ai-tools-carousel-window" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
                         <div
                             className="ai-tools-grid ai-tools-carousel-track"
                             style={{ transform: `translateX(-${(currentIndex * 100) / cardsPerView}%)` }}
