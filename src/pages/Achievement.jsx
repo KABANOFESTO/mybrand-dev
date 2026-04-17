@@ -11,7 +11,7 @@ const projects = [
         category: 'Web Platform',
         image: commerce,
         description: 'A shopping experience focused on clean browsing, conversion-friendly layout, and clear product presentation.',
-        stack: ['React', 'JavaScript', 'Responsive UI'],
+        // stack: ['React', 'JavaScript', 'Responsive UI'],
         link: 'https://e-comm-team-emma25-fe.netlify.app/',
     },
     {
@@ -19,28 +19,28 @@ const projects = [
         category: 'Operations Software',
         image: hotel,
         description: 'A hospitality-oriented interface concept for reservations, guest workflows, and streamlined management tasks.',
-        stack: ['Frontend UI', 'Workflow Design', 'Data Views'],
+        // stack: ['Frontend UI', 'Workflow Design', 'Data Views'],
     },
     {
         title: 'Responsive Web Design Projects',
         category: 'Portfolio Work',
         image: web,
         description: 'A collection of modern interfaces built to remain clean, readable, and engaging on every screen size.',
-        stack: ['HTML', 'CSS', 'Design Systems'],
+        // stack: ['HTML', 'CSS', 'Design Systems'],
     },
     {
         title: 'Software Training Projects',
         category: 'Technical Growth',
         image: solve,
         description: 'Hands-on programming projects developed while sharpening problem solving and implementation fundamentals.',
-        stack: ['Python', 'C++', 'Logic Building'],
+        // stack: ['Python', 'C++', 'Logic Building'],
     },
     {
         title: 'Developer Brand Experience',
         category: 'Personal Portfolio',
         image: developer,
         description: 'A recruiter-facing portfolio experience designed to position technical ability with stronger presentation.',
-        stack: ['React', 'UX Writing', '3D UI Styling'],
+        // stack: ['React', 'UX Writing', '3D UI Styling'],
     },
 ];
 
@@ -84,11 +84,11 @@ const Achievement = () => {
                                             <h3>{project.title}</h3>
                                             <p>{project.description}</p>
 
-                                            <div className="project-stack">
+                                            {/* <div className="project-stack">
                                                 {project.stack.map((item) => (
                                                     <span key={item}>{item}</span>
                                                 ))}
-                                            </div>
+                                            </div> */}
 
                                             <div className="project-actions">
                                                 {project.link ? (
