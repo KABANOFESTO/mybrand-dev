@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import commerce from '../assets/images/e.jpg';
 import hotel from '../assets/images/hotel.jpeg';
 import web from '../assets/images/web.jpg';
@@ -20,7 +20,6 @@ const projects = [
         image: hotel,
         description: 'A hospitality-oriented interface concept for reservations, guest workflows, and streamlined management tasks.',
         stack: ['Frontend UI', 'Workflow Design', 'Data Views'],
-        // link: 'https://e-comm-team-emma25-fe.netlify.app/',
     },
     {
         title: 'Responsive Web Design Projects',
@@ -47,14 +46,6 @@ const projects = [
 
 const Achievement = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
-
-    useEffect(() => {
-        const interval = window.setInterval(() => {
-            setCurrentIndex((current) => (current + 1) % projects.length);
-        }, 5000);
-
-        return () => window.clearInterval(interval);
-    }, []);
 
     const goToSlide = (index) => setCurrentIndex(index);
     const nextSlide = () => setCurrentIndex((current) => (current + 1) % projects.length);

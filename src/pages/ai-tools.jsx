@@ -42,7 +42,6 @@ const getCardsPerView = () => {
 const AiTools = () => {
     const [cardsPerView, setCardsPerView] = useState(getCardsPerView);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [isPaused, setIsPaused] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
@@ -54,17 +53,6 @@ const AiTools = () => {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
-
-    useEffect(() => {
-        if (isPaused) return undefined;
-
-        const maxIndex = Math.max(tools.length - cardsPerView, 0);
-        const interval = window.setInterval(() => {
-            setCurrentIndex((current) => (current >= maxIndex ? 0 : current + 1));
-        }, 3400);
-
-        return () => window.clearInterval(interval);
-    }, [cardsPerView, isPaused]);
 
     const maxIndex = Math.max(tools.length - cardsPerView, 0);
     const goPrevious = () => setCurrentIndex((current) => (current <= 0 ? maxIndex : current - 1));
@@ -82,11 +70,7 @@ const AiTools = () => {
                     </p>
                 </div>
 
-                <div
-                    className="ai-tools-carousel-shell"
-                    onMouseEnter={() => setIsPaused(true)}
-                    onMouseLeave={() => setIsPaused(false)}
-                >
+                <div className="ai-tools-carousel-shell">
                     <button type="button" className="ai-tools-carousel-arrow" onClick={goPrevious} aria-label="Previous AI tool">
                         <i className="bi bi-arrow-left"></i>
                     </button>
