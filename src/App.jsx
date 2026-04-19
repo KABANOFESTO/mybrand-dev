@@ -6,6 +6,13 @@ import Footer from './Components/Footer';
 import Login from './pages/auth/Login';
 import Signup from './pages/auth/Signup';
 import Navbar from './Components/Navbar';
+import OwnerLayout from './pages/owner/layout';
+import OwnerOverview from './pages/owner/dashboard';
+import OwnerProjectsPage from './pages/owner/projects';
+import OwnerCertificatesPage from './pages/owner/certificates';
+import OwnerInsightsPage from './pages/owner/insights';
+import OwnerEarningsPage from './pages/owner/earnings';
+import OwnerProfilePage from './pages/owner/profile';
 
 const MAINTENANCE_MODE = false;
 
@@ -34,7 +41,7 @@ function MaintenancePage() {
                     width: '100%',
                 }}
             >
-                <div style={{ fontSize: '64px', marginBottom: '16px' }}>🔧</div>
+                <div style={{ fontSize: '64px', marginBottom: '16px' }}>??</div>
                 <h1 style={{ fontSize: '28px', color: '#1a202c', marginBottom: '12px' }}>Under Maintenance</h1>
                 <p style={{ color: '#718096', fontSize: '16px', lineHeight: '1.6', marginBottom: '24px' }}>
                     I am currently performing scheduled maintenance to improve the features. I will be back shortly.
@@ -60,7 +67,10 @@ const NO_LAYOUT_ROUTES = ['/login', '/signup'];
 
 function Layout({ children }) {
     const location = useLocation();
-    const hideLayout = NO_LAYOUT_ROUTES.includes(location.pathname);
+    const hideLayout =
+        NO_LAYOUT_ROUTES.includes(location.pathname) ||
+        location.pathname.startsWith('/owner') ||
+        location.pathname.startsWith('/vistor');
 
     return (
         <div className="App">
@@ -89,6 +99,14 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
+                    <Route path="/owner" element={<OwnerLayout />}>
+                        <Route path="overview" element={<OwnerOverview />} />
+                        <Route path="projects" element={<OwnerProjectsPage />} />
+                        <Route path="certificates" element={<OwnerCertificatesPage />} />
+                        <Route path="insights" element={<OwnerInsightsPage />} />
+                        <Route path="earnings" element={<OwnerEarningsPage />} />
+                        <Route path="profile" element={<OwnerProfilePage />} />
+                    </Route>
                 </Routes>
             </Layout>
         </Router>
