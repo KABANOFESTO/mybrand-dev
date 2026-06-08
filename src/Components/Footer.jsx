@@ -1,22 +1,15 @@
 const Footer = () => {
     return (
-        <>
-            <div>
-                <footer className="bg-white p-2">
-                    <p> © 2024 kabano All Rights Reserved.</p>
-                    <ul className="footerlist">
-                        {/* li*4 => 4 list*/}
-                        <li>Privacy</li>
-                        <li>Terms</li>
-                        <li>aboutMe</li>
-                        <li>Location</li>
-                    </ul>
-
-                    <p className="soso">English(EN)</p>
-                </footer>
+        <footer className="portfolio-footer">
+            <div className="container portfolio-footer-inner">
+                <p>© 2026 KABANO Festo Dev</p>
+                <div className="portfolio-footer-links">
+                    <span>Full Stack Developer</span>
+                    <span>Kigali, Rwanda</span>
+                </div>
             </div>
-        </>
+        </footer>
     );
-}
+};
 
 export default Footer;
