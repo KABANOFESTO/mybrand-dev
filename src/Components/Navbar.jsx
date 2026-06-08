@@ -66,7 +66,7 @@ const Navbar = () => {
                         ))}
                         <li className="nav-item">
                             <div className="nav-pill-group">
-                                <a href="/festo.pdf" download="Kabano-Festo-Resume" className="nav-btn nav-btn-resume">
+                                <a href="/resume.pdf" download="Kabano-Festo-Resume" className="nav-btn nav-btn-resume">
                                     <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                                         <path d="M4 2h6l3 3v9H4V2z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" fill="none" />
                                         <path d="M9 2v4h3" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" />
