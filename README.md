@@ -1,6 +1,6 @@
 # Portfolio Website
 
-A modern and responsive personal portfolio website built to showcase my projects, skills, and professional experience.
+A modern full-stack personal portfolio website built to showcase my projects, skills, and professional experience. It also includes AI/ML integration on the backend to enhance functionality and demonstrate intelligent features.
 
 ## Tech Stack
 
@@ -13,12 +13,13 @@ A modern and responsive personal portfolio website built to showcase my projects
 ### Backend (`be`)
 - NestJS
 - REST API
+- AI/ML integration (Python/Model-based services or APIs)
 
 ## Project Structure
 
 ```text
 portfolio/
-├── be/          # NestJS backend
+├── be/          # NestJS backend (with AI/ML features)
 └── fe/          # React + Vite frontend
 ```
 
@@ -49,17 +50,16 @@ npm run dev
 
 ## Features
 
-- Responsive design
-- Modern user interface
-- Project showcase
-- Skills section
+- Responsive and modern UI
+- Project and skills showcase
 - Contact section
-- AI/ML integration 
 - REST API integration
+- AI/ML-powered backend features
+- Clean full-stack architecture (NestJS + React)
 
 ## Author
 
 **Kabano Festo**
 
 ---
-Feel free to fork this repository, explore the code, and share your feedback.
+Built with passion to demonstrate full-stack development and AI integration skills.
