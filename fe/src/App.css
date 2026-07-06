@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,600;1,700&family=Poppins&family=Roboto&display=swap");
+
+@import 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0';
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+/*boostrap-icons*/
+@import 'owl.carousel/dist/assets/owl.carousel.min.css';
+/*owl.carousel*/
+@import 'owl.carousel/dist/assets/owl.theme.default.min.css';
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"';
+@import "https://cdn.jsdelivr.net/npm/themify-icons@0.1.2/css/themify-icons.css";
+@import 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css';
+@import 'https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css';
+
+
+body {
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background-position: center;
+  background: white;
+  height: auto;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  margin: auto;
+  overflow-x: hidden;
+}

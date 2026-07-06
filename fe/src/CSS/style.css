@@ -1,0 +1,418 @@
+.about-outline {
+    padding: 0;
+
+}
+
+.big-padding {
+    padding: 40px 0;
+}
+
+.about-cover {
+    background-color: transparent;
+    height: 100vh;
+}
+
+.image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.45);
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+
+h1.fw-bold,
+h3,
+p {
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 992px) {
+    .cerficates {
+        height: 100%;
+    }
+
+    .c-body {
+        width: 500px;
+        height: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .c-body {
+        width: 90vw;
+        height: 90vw;
+    }
+
+    .certificates .c-body .icon .imgBx {
+        width: 20vw;
+        height: 20vw;
+        transform-origin: 45vw;
+    }
+
+    .about-row {
+        flex-direction: column;
+    }
+
+    .about-row {
+        margin: auto;
+    }
+
+    .image,
+    .detailat {
+        max-width: 100%;
+    }
+
+    .detailat {
+        padding: 10px;
+    }
+
+    .about-cover {
+        background-color: transparent;
+        height: 100%;
+    }
+
+    .contentc::before {
+        inset: 50px;
+    }
+
+    .contentc::after {
+        display: none;
+    }
+
+    .cerficates {
+        height: 100%;
+    }
+
+    .c-body {
+        width: 400px;
+        height: 400px;
+    }
+
+    .certificates .contentBx .card .imgBx {
+        width: 50px;
+        height: 50px;
+    }
+
+    .certificates .contentBx .card .textBx h2 {
+        font-size: 1em;
+    }
+
+    .certificates .contentBx .card .textBx h2 span {
+        font-size: 0.6em;
+    }
+
+    .certificates .contentBx .card .textBx .sci li a {
+        width: 25px;
+        height: 25px;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .c-body {
+        width: 95vw;
+        height: 95vw;
+    }
+
+    .certificates .c-body .icon .imgBx {
+        width: 10vw;
+        height: 10vw;
+        transform-origin: 43vw;
+    }
+
+
+    .certificates .contentBx .card .imgBx {
+        width: 100px;
+        height: 100px;
+    }
+
+    .certificates .contentBx .card .textBx h2 {
+        font-size: 0.9em;
+    }
+
+    .certificates .contentBx .card .textBx h2 span {
+        font-size: 0.5em;
+    }
+
+    .certificates .contentBx .card .textBx .sci li a {
+        width: 20px;
+        height: 20px;
+    }
+
+    .certificates .contentc::before {
+        inset: 20px;
+    }
+}
+
+.view.detailat {
+    background-color: #f5f5f5;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.view.detailat::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 80%;
+    height: 20px;
+    background-color: #d9d9d9;
+    border-radius: 10px 10px 0 0;
+}
+
+.view.detailat h1 {
+    color: #333;
+    font-family: 'Brush Script MT', cursive;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.view.detailat h3 {
+    color: #666;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.view.detailat p {
+    color: #555;
+    font-family: 'Times New Roman', serif;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* .cerficates */
+
+.cerficates {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.c-body {
+    position: relative;
+    width: 80vw;
+    max-width: 600px;
+    height: 80vw;
+    max-height: 600px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+
+.c-body .icon {
+    position: relative;
+    left: -50%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.c-body .icon .imgBx {
+    position: absolute;
+    width: 15vw;
+    max-width: 100px;
+    height: 15vw;
+    max-height: 100px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    box-shadow: 0 0 0 4px #222,
+        0 0 0 6px #fff;
+    transform: rotate(calc(360deg/4 * var(--i)));
+    transform-origin: 340px;
+    z-index: 100;
+    overflow: hidden;
+    transition: transform 1.5s;
+}
+
+.c-body .icon .imgBx.active {
+    box-shadow: 0 0 0 6px grey,
+        0 0 0 12px skyblue;
+}
+
+.c-body .icon .imgBx img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    transform: rotate(calc(-360deg/4 * var(--i)));
+    transition: 0.5s;
+    filter: grayscale(1);
+}
+
+.c-body .icon .imgBx.active img {
+    filter: grayscale(0);
+}
+
+.contentc {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentc::before {
+    content: '';
+    position: absolute;
+    inset: 60px;
+    border: 4px solid transparent;
+    border-left: 4px solid #2196f3;
+    border-right: 4px solid #fff;
+    border-radius: 50%;
+    animation: anime_01 5s linear infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes anime_01 {
+    0% {
+        rotate: 0deg;
+    }
+
+    100% {
+        rotate: 360deg;
+    }
+}
+
+.contentc::after {
+    content: '';
+    position: absolute;
+    inset: 120px;
+    border: 4px solid transparent;
+    border-left: 4px solid #108b41;
+    border-right: 4px solid #fff;
+    border-radius: 50%;
+    animation: anime_02 2.5s linear infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes anime_02 {
+    0% {
+        rotate: 360deg;
+    }
+
+    100% {
+        rotate: 0deg;
+    }
+}
+
+.contentBx {
+    position: absolute;
+    transform: scale(0);
+    transition: 0.5s;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentBx.active {
+    transform: scale(1);
+    opacity: 1;
+    transition-delay: 0.5;
+}
+
+.contentBx .card {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contentBx .card .imgBx {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.contentBx .card .imgBx img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contentBx .card .textBx {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contentBx .card .textBx h2 {
+    position: relative;
+    font-size: 1.25em;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1em;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.contentBx .card .textBx h2 span {
+    font-size: 0.65em;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+
+}
+
+.contentBx .card .textBx .sci {
+    position: relative;
+    display: flex;
+    gap: 7px;
+    margin-top: 10px;
+}
+
+.contentBx .card .textBx .sci li {
+    list-style: none;
+
+}
+
+.contentBx .card .textBx .sci li a {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1d1f21;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+.contentBx .card .textBx .sci li a {
+    background-color: #2196f3;
+}
+.container .h{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+}
