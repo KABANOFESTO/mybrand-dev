@@ -1,38 +1,42 @@
 import { registerAs } from '@nestjs/config';
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import {
+  buildPostgresUrl,
+  envBoolean,
+  envNumber,
+} from '../shared/helpers/env.helper';
 
 export default registerAs(
   'database',
-  (): TypeOrmModuleOptions => {
-    const useUrl = !!process.env.DB_URL;
-    const sslEnabled = process.env.DB_SSL === 'true';
-    const rejectUnauthorized =
-      process.env.DB_SSL_REJECT_UNAUTHORIZED === 'true';
+  () => {
+    const host = process.env.DB_HOST || 'localhost';
+    const port = envNumber(process.env.DB_PORT, 5432);
+    const username = process.env.DB_USERNAME || 'postgres';
+    const password = process.env.DB_PASSWORD || '';
+    const database = process.env.DB_NAME || 'mybranddb';
+    const url =
+      process.env.DATABASE_URL ||
+      buildPostgresUrl({
+        host,
+        port,
+        username,
+        password,
+        database,
+      });
 
     return {
-      type: 'postgres',
-      ...(useUrl
-        ? { url: process.env.DB_URL }
-        : {
-            host: process.env.DB_HOST || 'localhost',
-            port: parseInt(process.env.DB_PORT || '5432', 10),
-            username: process.env.DB_USERNAME || 'postgres',
-            password: process.env.DB_PASSWORD || '',
-            database: process.env.DB_NAME || 'codecircle_db',
-          }),
-      entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-      migrations: [__dirname + '/../database/migrations/*{.ts,.js}'],
-      migrationsTableName: 'migrations',
-      synchronize: process.env.DB_SYNCHRONIZE === 'true',
+      host,
+      port,
+      username,
+      password,
+      database,
+      url,
+      ssl: envBoolean(process.env.DB_SSL, false),
+      rejectUnauthorized: envBoolean(
+        process.env.DB_SSL_REJECT_UNAUTHORIZED,
+        false,
+      ),
+      synchronize: envBoolean(process.env.DB_SYNCHRONIZE, false),
       logging: process.env.NODE_ENV === 'development',
-      retryAttempts: 3,
-      retryDelay: 3000,
-      autoLoadEntities: true,
-      ssl: sslEnabled
-        ? {
-            rejectUnauthorized,
-          }
-        : undefined,
     };
   },
 );

@@ -1,0 +1,288 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  OWNER
+  VISITOR
+  RECRUITER
+  ADMIN
+}
+
+enum ProjectStatus {
+  IDEA
+  PLANNED
+  IN_PROGRESS
+  COMPLETED
+  ARCHIVED
+}
+
+enum SkillCategory {
+  FRONTEND
+  BACKEND
+  DATABASE
+  DEVOPS
+  AI_ML
+  DESIGN
+  OTHER
+}
+
+enum ContactStatus {
+  NEW
+  IN_PROGRESS
+  RESOLVED
+  ARCHIVED
+}
+
+enum AiReportType {
+  CODE_REVIEW
+  SKILL_ANALYSIS
+  RESUME_GENERATION
+  INTERVIEW_SIMULATION
+}
+
+enum PaymentProvider {
+  STRIPE
+  MTN_MOBILE_MONEY
+  AIRTEL_MONEY
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCEEDED
+  FAILED
+  REFUNDED
+  CANCELLED
+}
+
+enum NotificationType {
+  PAYMENT
+  CONTACT
+  AI_REPORT
+  SYSTEM
+}
+
+enum InterviewDifficulty {
+  JUNIOR
+  MID
+  SENIOR
+}
+
+model User {
+  id              String           @id @default(cuid())
+  email           String           @unique
+  passwordHash    String
+  name            String
+  role            UserRole         @default(VISITOR)
+  avatarUrl       String?
+  isActive        Boolean          @default(true)
+  emailVerifiedAt DateTime?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  profile         Profile?
+  projects        Project[]        @relation("ProjectOwner")
+  contacts        ContactMessage[]
+  aiReports       AiReport[]
+  payments        Payment[]
+  notifications   Notification[]
+  analytics      AnalyticsEvent[]
+  interviewSessions InterviewSession[]
+  refreshTokens   RefreshToken[]
+}
+
+model Profile {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  headline    String?
+  bio         String?
+  about       String?
+  location    String?
+  website     String?
+  github      String?
+  linkedin    String?
+  resumeUrl   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Project {
+  id            String         @id @default(cuid())
+  slug          String         @unique
+  title         String
+  description   String
+  repositoryUrl String?
+  liveUrl       String?
+  imageUrl      String?
+  featured      Boolean        @default(false)
+  status        ProjectStatus   @default(IDEA)
+  technologies  String[]
+  features      String[]
+  startDate     DateTime?
+  endDate       DateTime?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  ownerId       String?
+  owner         User?          @relation("ProjectOwner", fields: [ownerId], references: [id], onDelete: SetNull)
+}
+
+model Certificate {
+  id             String   @id @default(cuid())
+  title          String
+  issuer         String
+  credentialId   String?
+  issuedAt       DateTime
+  expiredAt      DateTime?
+  verificationUrl String?
+  pdfUrl         String?
+  imageUrl       String?
+  skills         String[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Skill {
+  id          String         @id @default(cuid())
+  name        String         @unique
+  category    SkillCategory
+  proficiency  Int
+  icon        String?
+  sortOrder   Int            @default(0)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model Experience {
+  id          String   @id @default(cuid())
+  company     String
+  role        String
+  location    String?
+  description String
+  startDate   DateTime
+  endDate     DateTime?
+  current     Boolean  @default(false)
+  technologies String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Education {
+  id          String   @id @default(cuid())
+  institution String
+  degree      String
+  field       String
+  location    String?
+  score       String?
+  startDate   DateTime
+  endDate     DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ContactMessage {
+  id          String        @id @default(cuid())
+  name        String
+  email       String
+  subject     String
+  message     String
+  status      ContactStatus @default(NEW)
+  source      String?
+  respondedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  userId      String?
+  user        User?         @relation(fields: [userId], references: [id], onDelete: SetNull)
+}
+
+model AiReport {
+  id          String          @id @default(cuid())
+  type        AiReportType
+  title       String
+  input       Json
+  output      Json
+  score       Int?
+  isPremium   Boolean         @default(false)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  userId      String?
+  user        User?           @relation(fields: [userId], references: [id], onDelete: SetNull)
+}
+
+model Payment {
+  id              String          @id @default(cuid())
+  provider        PaymentProvider
+  transactionRef  String          @unique
+  planName        String
+  amount          Decimal         @db.Decimal(12, 2)
+  currency        String          @default("USD")
+  status          PaymentStatus   @default(PENDING)
+  metadata        Json?
+  paidAt          DateTime?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  userId          String?
+  user            User?           @relation(fields: [userId], references: [id], onDelete: SetNull)
+}
+
+model Notification {
+  id          String           @id @default(cuid())
+  type        NotificationType
+  title       String
+  body        String
+  metadata    Json?
+  readAt      DateTime?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  userId      String?
+  user        User?            @relation(fields: [userId], references: [id], onDelete: SetNull)
+}
+
+model AnalyticsEvent {
+  id          String   @id @default(cuid())
+  name        String
+  path        String?
+  ipAddress   String?
+  userAgent   String?
+  metadata    Json?
+  createdAt   DateTime @default(now())
+
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+}
+
+model InterviewSession {
+  id            String             @id @default(cuid())
+  role          String
+  difficulty    InterviewDifficulty
+  questions     Json
+  answers       Json?
+  feedback     Json?
+  score         Int?
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+
+  userId        String?
+  user          User?              @relation(fields: [userId], references: [id], onDelete: SetNull)
+}
+
+model RefreshToken {
+  id          String   @id @default(cuid())
+  tokenHash   String   @unique
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+  revokedAt   DateTime?
+
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
