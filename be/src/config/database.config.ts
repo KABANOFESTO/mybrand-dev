@@ -24,6 +24,7 @@ export default registerAs(
       });
 
     return {
+      provider: 'postgresql',
       host,
       port,
       username,
