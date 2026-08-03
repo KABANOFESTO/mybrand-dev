@@ -1,6 +1,6 @@
 ﻿# MyBrand Backend
 
-Production-ready NestJS backend for the MyBrand portfolio platform.
+NestJS backend for the MyBrand portfolio platform.
 
 ## What’s Included
 
@@ -65,8 +65,6 @@ PayPack variables:
 - `PAYPACK_REQUEST_TIMEOUT_SECONDS`
 
 ## Prisma
-
-The project uses UUIDs for all primary keys and relations.
 
 Useful commands:
 
@@ -147,11 +145,11 @@ npm run test:e2e
 
 ### Interview Flow
 
-- Use `GET /interviews/templates` to populate frontend presets.
-- Use `POST /interviews/me/sessions` to create a new session.
+- `GET /interviews/templates` to populate frontend presets.
+- `POST /interviews/me/sessions` to create a new session.
 - Save answers with `PATCH /interviews/me/sessions/:id/answers`.
 - Generate AI-backed feedback with `POST /interviews/me/sessions/:id/feedback`.
-- Use `GET /interviews/summary` for dashboard analytics.
+- `GET /interviews/summary` for dashboard analytics.
 
 ## Payments
 
@@ -248,4 +246,3 @@ npm run test:e2e
 - The app serves public uploads from dedicated folders only.
 - The PayPack webhook route relies on raw request body capture in `main.ts`.
 - Bootstrap admin creation is controlled by environment variables.
-- The backend is ready to connect to the frontend portfolio app.
