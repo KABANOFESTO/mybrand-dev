@@ -47,6 +47,7 @@ enum AiReportType {
 }
 
 enum PaymentProvider {
+  PAYPACK
   STRIPE
   MTN_MOBILE_MONEY
   AIRTEL_MONEY
