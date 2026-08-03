@@ -11,61 +11,10 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
+import { IsSlug } from '@common/validators/is-slug.validator';
+import { parseBoolean, parseDateOrUndefined, splitToStringArray, trimToUndefined } from '@common/utils';
 import { ProjectStatus } from '@prisma/client';
 
-function trimToUndefined(value: unknown) {
-  if (typeof value !== 'string') {
-    return value;
-  }
-
-  const trimmed = value.trim();
-  return trimmed.length > 0 ? trimmed : undefined;
-}
-
-function toBoolean(value: unknown) {
-  if (typeof value === 'boolean') {
-    return value;
-  }
-
-  if (typeof value === 'string') {
-    const normalized = value.trim().toLowerCase();
-    if (['true', '1', 'yes', 'on'].includes(normalized)) {
-      return true;
-    }
-
-    if (['false', '0', 'no', 'off'].includes(normalized)) {
-      return false;
-    }
-  }
-
-  return value;
-}
-
-function toStringArray(value: unknown) {
-  if (Array.isArray(value)) {
-    return value
-      .map((item) => (typeof item === 'string' ? item.trim() : ''))
-      .filter((item) => item.length > 0);
-  }
-
-  if (typeof value === 'string') {
-    return value
-      .split(',')
-      .map((item) => item.trim())
-      .filter((item) => item.length > 0);
-  }
-
-  return value;
-}
-
-function toDateOrUndefined(value: unknown) {
-  if (value === null || value === undefined || value === '') {
-    return undefined;
-  }
-
-  const date = new Date(String(value));
-  return Number.isNaN(date.getTime()) ? value : date;
-}
 
 export class UpdateProjectDto {
   @IsOptional()
@@ -108,7 +57,7 @@ export class UpdateProjectDto {
   imageUrl?: string;
 
   @IsOptional()
-  @Transform(({ value }) => toBoolean(value))
+  @Transform(({ value }) => parseBoolean(value))
   @IsBoolean()
   featured?: boolean;
 
@@ -117,7 +66,7 @@ export class UpdateProjectDto {
   status?: ProjectStatus;
 
   @IsOptional()
-  @Transform(({ value }) => toStringArray(value))
+  @Transform(({ value }) => splitToStringArray(value))
   @IsArray()
   @ArrayMinSize(1)
   @IsString({ each: true })
@@ -125,7 +74,7 @@ export class UpdateProjectDto {
   technologies?: string[];
 
   @IsOptional()
-  @Transform(({ value }) => toStringArray(value))
+  @Transform(({ value }) => splitToStringArray(value))
   @IsArray()
   @ArrayMinSize(1)
   @IsString({ each: true })
@@ -133,12 +82,17 @@ export class UpdateProjectDto {
   features?: string[];
 
   @IsOptional()
-  @Transform(({ value }) => toDateOrUndefined(value))
+  @Transform(({ value }) => parseDateOrUndefined(value))
   @IsDate()
   startDate?: Date;
 
   @IsOptional()
-  @Transform(({ value }) => toDateOrUndefined(value))
+  @Transform(({ value }) => parseDateOrUndefined(value))
   @IsDate()
   endDate?: Date;
 }
+
+
+
+
+

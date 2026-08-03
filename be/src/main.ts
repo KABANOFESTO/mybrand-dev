@@ -1,9 +1,11 @@
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
-import { Logger } from '@nestjs/common';
 import cookieParser from 'cookie-parser';
-import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from '@app/app.module';
+import { AllExceptionsFilter } from '@common/filters/all-exceptions.filter';
+import { RequestLoggingInterceptor } from '@common/interceptors/request-logging.interceptor';
+import { TrimStringsPipe } from '@common/pipes/trim-strings.pipe';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -23,7 +25,10 @@ async function bootstrap() {
     credentials: true,
   });
   app.use(cookieParser());
+  app.useGlobalFilters(new AllExceptionsFilter());
+  app.useGlobalInterceptors(new RequestLoggingInterceptor());
   app.useGlobalPipes(
+    new TrimStringsPipe(),
     new ValidationPipe({
       whitelist: true,
       transform: true,
