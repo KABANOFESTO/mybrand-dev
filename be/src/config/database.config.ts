@@ -3,7 +3,7 @@ import {
   buildPostgresUrl,
   envBoolean,
   envNumber,
-} from '../shared/helpers/env.helper';
+} from '@shared/helpers/env.helper';
 
 export default registerAs(
   'database',

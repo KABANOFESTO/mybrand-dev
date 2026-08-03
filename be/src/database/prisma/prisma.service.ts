@@ -1,6 +1,6 @@
 import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
-import { buildPostgresUrl, envBoolean } from '../../shared/helpers/env.helper';
+import { buildPostgresUrl, envBoolean } from '@shared/helpers/env.helper';
 
 function resolveDatabaseUrl() {
   const host = process.env.DB_HOST || 'localhost';
