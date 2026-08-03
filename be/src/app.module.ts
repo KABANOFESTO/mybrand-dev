@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from '@app/app.controller';
 import { AppService } from '@app/app.service';
@@ -21,6 +21,7 @@ import { InterviewsModule } from '@modules/interviews/interviews.module';
 import { NotificationsModule } from '@modules/notifications/notifications.module';
 import { UploadsModule } from '@modules/uploads/uploads.module';
 import { DashboardModule } from '@modules/dashboard/dashboard.module';
+import { RequestContextMiddleware } from '@common/middleware/request-context.class';
 
 @Module({
   imports: [
@@ -51,4 +52,10 @@ import { DashboardModule } from '@modules/dashboard/dashboard.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(RequestContextMiddleware)
+      .forRoutes({ path: '*', method: RequestMethod.ALL });
+  }
+}
