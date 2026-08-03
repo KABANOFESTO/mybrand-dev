@@ -74,7 +74,7 @@ enum InterviewDifficulty {
 }
 
 model User {
-  id              String           @id @default(cuid())
+  id              String           @id @default(uuid()) @db.Uuid
   email           String           @unique
   passwordHash    String
   name            String
@@ -97,8 +97,8 @@ model User {
 }
 
 model Profile {
-  id          String   @id @default(cuid())
-  userId      String   @unique
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String   @unique @db.Uuid
   headline    String?
   bio         String?
   about       String?
@@ -114,7 +114,7 @@ model Profile {
 }
 
 model Project {
-  id            String         @id @default(cuid())
+  id            String         @id @default(uuid()) @db.Uuid
   slug          String         @unique
   title         String
   description   String
@@ -129,12 +129,12 @@ model Project {
   endDate       DateTime?
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
-  ownerId       String?
+  ownerId       String?        @db.Uuid
   owner         User?          @relation("ProjectOwner", fields: [ownerId], references: [id], onDelete: SetNull)
 }
 
 model Certificate {
-  id             String   @id @default(cuid())
+  id             String   @id @default(uuid()) @db.Uuid
   title          String
   issuer         String
   credentialId   String?
@@ -149,7 +149,7 @@ model Certificate {
 }
 
 model Skill {
-  id          String         @id @default(cuid())
+  id          String         @id @default(uuid()) @db.Uuid
   name        String         @unique
   category    SkillCategory
   proficiency  Int
@@ -160,7 +160,7 @@ model Skill {
 }
 
 model Experience {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid()) @db.Uuid
   company     String
   role        String
   location    String?
@@ -174,7 +174,7 @@ model Experience {
 }
 
 model Education {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid()) @db.Uuid
   institution String
   degree      String
   field       String
@@ -187,7 +187,7 @@ model Education {
 }
 
 model ContactMessage {
-  id          String        @id @default(cuid())
+  id          String        @id @default(uuid()) @db.Uuid
   name        String
   email       String
   subject     String
@@ -198,12 +198,12 @@ model ContactMessage {
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
 
-  userId      String?
+  userId      String?       @db.Uuid
   user        User?         @relation(fields: [userId], references: [id], onDelete: SetNull)
 }
 
 model AiReport {
-  id          String          @id @default(cuid())
+  id          String          @id @default(uuid()) @db.Uuid
   type        AiReportType
   title       String
   input       Json
@@ -213,12 +213,12 @@ model AiReport {
   createdAt   DateTime        @default(now())
   updatedAt   DateTime        @updatedAt
 
-  userId      String?
+  userId      String?        @db.Uuid
   user        User?           @relation(fields: [userId], references: [id], onDelete: SetNull)
 }
 
 model Payment {
-  id              String          @id @default(cuid())
+  id              String          @id @default(uuid()) @db.Uuid
   provider        PaymentProvider
   transactionRef  String          @unique
   planName        String
@@ -230,12 +230,12 @@ model Payment {
   createdAt       DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
 
-  userId          String?
+  userId          String?       @db.Uuid
   user            User?           @relation(fields: [userId], references: [id], onDelete: SetNull)
 }
 
 model Notification {
-  id          String           @id @default(cuid())
+  id          String           @id @default(uuid()) @db.Uuid
   type        NotificationType
   title       String
   body        String
@@ -244,12 +244,12 @@ model Notification {
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
 
-  userId      String?
+  userId      String?         @db.Uuid
   user        User?            @relation(fields: [userId], references: [id], onDelete: SetNull)
 }
 
 model AnalyticsEvent {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid()) @db.Uuid
   name        String
   path        String?
   ipAddress   String?
@@ -257,12 +257,12 @@ model AnalyticsEvent {
   metadata    Json?
   createdAt   DateTime @default(now())
 
-  userId      String?
+  userId      String? @db.Uuid
   user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
 }
 
 model InterviewSession {
-  id            String             @id @default(cuid())
+  id            String             @id @default(uuid()) @db.Uuid
   role          String
   difficulty    InterviewDifficulty
   questions     Json
@@ -272,17 +272,18 @@ model InterviewSession {
   createdAt    DateTime           @default(now())
   updatedAt    DateTime           @updatedAt
 
-  userId        String?
+  userId        String?          @db.Uuid
   user          User?              @relation(fields: [userId], references: [id], onDelete: SetNull)
 }
 
 model RefreshToken {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid()) @db.Uuid
+  jti         String   @unique
   tokenHash   String   @unique
   expiresAt   DateTime
   createdAt   DateTime @default(now())
   revokedAt   DateTime?
 
-  userId      String
+  userId      String    @db.Uuid
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
