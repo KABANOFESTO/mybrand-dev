@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
       "@app/*": ["./src/*"],
       "@common/*": ["./src/common/*"],
@@ -9,6 +10,7 @@
       "@modules/*": ["./src/modules/*"],
       "@shared/*": ["./src/shared/*"]
     },
+    "ignoreDeprecations": "5.0",
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "resolvePackageJsonExports": true,

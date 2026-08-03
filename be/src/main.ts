@@ -1,6 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
 import { Logger } from '@nestjs/common';
+import cookieParser from 'cookie-parser';
+import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from '@app/app.module';
 
 async function bootstrap() {
@@ -20,6 +22,17 @@ async function bootstrap() {
     origin: corsOrigin,
     credentials: true,
   });
+  app.use(cookieParser());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      transform: true,
+      forbidNonWhitelisted: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
+    }),
+  );
   app.setGlobalPrefix(globalPrefix);
   app.enableShutdownHooks();
 
