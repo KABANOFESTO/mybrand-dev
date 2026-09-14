@@ -73,21 +73,17 @@ const OwnerLayout = () => {
     }
 
     return (
-        <div className="owner-dashboard-shell owner-dashboard-shell-simple">
-            <OwnerSidebar
-                items={ownerMenu}
-                isOpen={sidebarOpen}
-                onClose={() => setSidebarOpen(false)}
-            />
+        <div className="flex min-h-screen bg-[#10121a]">
+            <OwnerSidebar items={ownerMenu} isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-            <div className="owner-dashboard-main">
+            <div className="flex min-w-0 flex-1 flex-col">
                 <OwnerNavbar
                     activeItem={activeItem}
                     sidebarOpen={sidebarOpen}
                     onMenuToggle={() => setSidebarOpen((prev) => !prev)}
                 />
 
-                <main className="owner-dashboard-content">
+                <main className="flex-1 overflow-y-auto px-4 pb-4 pt-2 text-[#e7e9f2] sm:px-6 sm:pb-6 sm:pt-3 lg:px-8 lg:pt-4">
                     <Outlet context={{ activeItem, closeSidebar: () => setSidebarOpen(false) }} />
                 </main>
             </div>
