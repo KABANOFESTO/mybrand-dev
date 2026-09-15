@@ -77,7 +77,7 @@ function Layout({ children }) {
     return (
         <div className="App">
             {!hideLayout && <Navbar />}
-            <div className="content">
+            <div className={`content ${hideLayout ? 'content-dashboard' : ''}`}>
                 {children}
             </div>
             {!hideLayout && <Footer />}

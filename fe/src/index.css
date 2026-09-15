@@ -884,6 +884,10 @@ hr {
   padding-top: 84px;
 }
 
+.content-dashboard {
+  padding-top: 0;
+}
+
 .portfolio-section {
   position: relative;
   padding: 110px 0;
