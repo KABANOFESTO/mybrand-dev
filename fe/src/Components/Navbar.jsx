@@ -46,7 +46,7 @@ const Navbar = () => {
                     </span>
                 </button>
 
-                <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`}>
+                <div className={`navbar-collapse portfolio-menu ${isOpen ? 'is-open' : ''}`}>
                     <ul className="navbar-nav ms-auto align-items-lg-center portfolio-nav-list">
                         {navItems.map((item) => (
                             <li className="nav-item" key={item.target}>
