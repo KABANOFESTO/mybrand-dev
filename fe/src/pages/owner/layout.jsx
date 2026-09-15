@@ -83,7 +83,7 @@ const OwnerLayout = () => {
                     onMenuToggle={() => setSidebarOpen((prev) => !prev)}
                 />
 
-                <main className="flex-1 overflow-y-auto px-4 pb-4 pt-2 text-[#e7e9f2] sm:px-6 sm:pb-6 sm:pt-3 lg:px-8 lg:pt-4">
+                <main className="flex-1 overflow-y-auto px-4 pb-4 pt-0 text-[#e7e9f2] sm:px-6 sm:pb-6 sm:pt-0 lg:px-8 lg:pt-0">
                     <Outlet context={{ activeItem, closeSidebar: () => setSidebarOpen(false) }} />
                 </main>
             </div>
