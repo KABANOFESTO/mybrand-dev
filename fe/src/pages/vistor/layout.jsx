@@ -51,7 +51,7 @@ const VisitorLayout = () => {
 					sidebarOpen={sidebarOpen}
 					onMenuToggle={() => setSidebarOpen((current) => !current)}
 				/>
-				<main className="flex-1 overflow-y-auto px-4 pb-6 pt-0 text-[#e7e9f2] sm:px-6 lg:px-8">
+				<main className="flex-1 overflow-y-auto px-4 pb-6 pt-3 text-[#e7e9f2] sm:px-6 sm:pt-4 lg:px-8 lg:pt-5">
 					<Outlet context={{ activeItem, closeSidebar: () => setSidebarOpen(false) }} />
 				</main>
 			</div>
