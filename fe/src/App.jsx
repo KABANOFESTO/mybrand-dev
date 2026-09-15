@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './App.css';
 import Home from './Components/Home';
@@ -13,6 +13,8 @@ import OwnerCertificatesPage from './pages/owner/certificates';
 import OwnerInsightsPage from './pages/owner/insights';
 import OwnerEarningsPage from './pages/owner/earnings';
 import OwnerProfilePage from './pages/owner/profile';
+import VisitorLayout from './pages/vistor/layout';
+import VisitorDashboard from './pages/vistor/dashboard';
 
 const MAINTENANCE_MODE = false;
 
@@ -99,6 +101,13 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
+                    <Route path="/vistor" element={<VisitorLayout />}>
+                        <Route index element={<Navigate to="overview" replace />} />
+                        <Route path="overview" element={<VisitorDashboard section="overview" />} />
+                        <Route path="profile" element={<VisitorDashboard section="profile" />} />
+                        <Route path="projects" element={<VisitorDashboard section="projects" />} />
+                        <Route path="certificates" element={<VisitorDashboard section="certificates" />} />
+                    </Route>
                     <Route path="/owner" element={<OwnerLayout />}>
                         <Route path="overview" element={<OwnerOverview />} />
                         <Route path="projects" element={<OwnerProjectsPage />} />

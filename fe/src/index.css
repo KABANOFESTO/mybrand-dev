@@ -1047,6 +1047,10 @@ hr {
   margin-left: 0;
 }
 
+.portfolio-menu {
+  display: flex;
+}
+
 .portfolio-nav-link {
   color: rgba(248, 252, 255, 0.82);
   font-size: 0.92rem;
@@ -1570,6 +1574,14 @@ hr {
     border: 1px solid rgba(255, 255, 255, 0.08);
     max-height: calc(100vh - 88px);
     overflow-y: auto;
+  }
+
+  .portfolio-menu {
+    display: none;
+  }
+
+  .portfolio-menu.is-open {
+    display: block;
   }
 
   .portfolio-nav-list {
