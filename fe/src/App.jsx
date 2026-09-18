@@ -13,6 +13,7 @@ import OwnerCertificatesPage from './pages/owner/certificates';
 import OwnerInsightsPage from './pages/owner/insights';
 import OwnerEarningsPage from './pages/owner/earnings';
 import OwnerProfilePage from './pages/owner/profile';
+import OwnerWorkspacePage from './pages/owner/workspace';
 import VisitorLayout from './pages/vistor/layout';
 import VisitorDashboard from './pages/vistor/dashboard';
 
@@ -102,18 +103,31 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/vistor" element={<VisitorLayout />}>
-                        <Route index element={<Navigate to="overview" replace />} />
-                        <Route path="overview" element={<VisitorDashboard section="overview" />} />
-                        <Route path="profile" element={<VisitorDashboard section="profile" />} />
-                        <Route path="projects" element={<VisitorDashboard section="projects" />} />
-                        <Route path="certificates" element={<VisitorDashboard section="certificates" />} />
+                        <Route index element={<Navigate to="home" replace />} />
+                        <Route path="home" element={<VisitorDashboard section="home" />} />
+                        <Route path="code-review" element={<VisitorDashboard section="code-review" />} />
+                        <Route path="skills" element={<VisitorDashboard section="skills" />} />
+                        <Route path="resume" element={<VisitorDashboard section="resume" />} />
+                        <Route path="interview" element={<VisitorDashboard section="interview" />} />
+                        <Route path="activity" element={<VisitorDashboard section="activity" />} />
+                        <Route path="plan" element={<VisitorDashboard section="plan" />} />
+                        <Route path="billing" element={<VisitorDashboard section="billing" />} />
+                        <Route path="settings" element={<VisitorDashboard section="settings" />} />
                     </Route>
                     <Route path="/owner" element={<OwnerLayout />}>
                         <Route path="overview" element={<OwnerOverview />} />
                         <Route path="projects" element={<OwnerProjectsPage />} />
                         <Route path="certificates" element={<OwnerCertificatesPage />} />
+                        <Route path="skills" element={<OwnerWorkspacePage />} />
+                        <Route path="experience" element={<OwnerWorkspacePage />} />
+                        <Route path="education" element={<OwnerWorkspacePage />} />
+                        <Route path="usage" element={<OwnerWorkspacePage />} />
                         <Route path="insights" element={<OwnerInsightsPage />} />
                         <Route path="earnings" element={<OwnerEarningsPage />} />
+                        <Route path="users" element={<OwnerWorkspacePage />} />
+                        <Route path="analytics" element={<OwnerWorkspacePage />} />
+                        <Route path="inbox" element={<OwnerWorkspacePage />} />
+                        <Route path="alerts" element={<OwnerWorkspacePage />} />
                         <Route path="profile" element={<OwnerProfilePage />} />
                     </Route>
                 </Routes>

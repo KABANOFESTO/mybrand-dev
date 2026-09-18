@@ -12,11 +12,19 @@ const initialCertificates = [
 ];
 
 const sectionCopy = {
-	overview: {
+	home: {
 		eyebrow: 'Workspace overview',
 		title: 'Keep your portfolio ready to share.',
 		description: 'Update the details recruiters see, publish strong project proof, and keep your credentials current.',
 	},
+	'code-review': { eyebrow: 'AI workspace', title: 'Review code with practical, actionable feedback.', description: 'Paste a snippet to identify issues, improve clarity, and build stronger engineering habits.' },
+	skills: { eyebrow: 'AI workspace', title: 'Turn your skills into a sharper career story.', description: 'Analyze strengths, spot useful gaps, and focus your next learning step.' },
+	resume: { eyebrow: 'Career tools', title: 'Create a resume that highlights your best work.', description: 'Build a clear, professional resume from your portfolio and experience.' },
+	interview: { eyebrow: 'Career tools', title: 'Practice interviews with confident answers.', description: 'Simulate realistic technical and behavioral interviews at your own pace.' },
+	activity: { eyebrow: 'Workspace', title: 'Keep track of your progress.', description: 'Review recent AI sessions, portfolio changes, and important milestones.' },
+	plan: { eyebrow: 'Account', title: 'Choose the plan that fits your momentum.', description: 'Compare features and unlock more AI support when you are ready.' },
+	billing: { eyebrow: 'Account', title: 'Manage your billing with confidence.', description: 'Review your subscription, payment method, and invoices in one place.' },
+	settings: { eyebrow: 'Account', title: 'Make your workspace yours.', description: 'Control preferences, privacy, and account settings from one clear place.' },
 	profile: {
 		eyebrow: 'Public profile',
 		title: 'Shape how people meet your work.',
@@ -46,7 +54,7 @@ const VisitorDashboard = ({ section }) => {
 	const [certificateForm, setCertificateForm] = useState({ name: '', issuer: '', year: '' });
 	const [selectedFile, setSelectedFile] = useState('');
 	const [notice, setNotice] = useState('');
-	const copy = sectionCopy[section] || sectionCopy.overview;
+	const copy = sectionCopy[section] || sectionCopy.home;
 
 	const showNotice = (message) => {
 		setNotice(message);
@@ -94,7 +102,7 @@ const VisitorDashboard = ({ section }) => {
 
 			{notice && <div role="status" className="rounded-lg border border-[#57e0c2]/30 bg-[#57e0c2]/10 px-4 py-3 text-sm text-[#9adbc8]">{notice}</div>}
 
-			{section === 'overview' && (
+			{section === 'home' && (
 				<section className="grid gap-4 sm:grid-cols-3">
 					{[
 						['Projects', projects.length, 'portfolio entries'],
@@ -105,6 +113,18 @@ const VisitorDashboard = ({ section }) => {
 							<p className="text-sm text-[#8ea2ad]">{label}</p>
 							<strong className="mt-2 block text-2xl text-[#f4f8f8]">{value}</strong>
 							<span className="mt-1 block text-xs text-[#6f8490]">{detail}</span>
+						</article>
+					))}
+				</section>
+			)}
+
+			{!['home', 'profile', 'projects', 'certificates'].includes(section) && (
+				<section className="grid gap-4 sm:grid-cols-3">
+					{['Personalized guidance', 'Private by design', 'Ready when you are'].map((title, index) => (
+						<article key={title} className="rounded-xl border border-[#293442] bg-[#151c24] p-5 transition-colors hover:border-[#f2b84b]/35">
+							<span className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#f2b84b]/25 bg-[#f2b84b]/10 text-[#f2b84b]"><i className={`bi ${['bi-stars', 'bi-shield-check', 'bi-arrow-up-right-circle'][index]}`} aria-hidden="true" /></span>
+							<h2 className="mt-4 font-semibold text-[#f4f8f8]">{title}</h2>
+							<p className="mt-2 text-sm leading-6 text-[#8ea2ad]">This area is set up for the next step in your developer journey.</p>
 						</article>
 					))}
 				</section>
@@ -139,7 +159,7 @@ const VisitorDashboard = ({ section }) => {
 };
 
 VisitorDashboard.propTypes = {
-	section: PropTypes.oneOf(['overview', 'profile', 'projects', 'certificates']).isRequired,
+	section: PropTypes.string.isRequired,
 };
 
 export default VisitorDashboard;

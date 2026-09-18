@@ -76,7 +76,7 @@ const OwnerNavbar = ({ activeItem, onMenuToggle, sidebarOpen }) => {
                         onClick={onMenuToggle}
                         aria-label={sidebarOpen ? 'Close navigation menu' : 'Open navigation menu'}
                         aria-expanded={sidebarOpen}
-                        aria-controls="owner-sidebar"
+                        aria-controls="visitor-sidebar"
                         className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md border border-[#262a38] bg-[#15171f] text-[#8b91a6] transition-colors hover:text-[#e7e9f2] lg:hidden"
                     >
                         <span className="flex h-3.5 w-4 flex-col justify-between">
