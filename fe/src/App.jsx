@@ -16,6 +16,8 @@ import OwnerProfilePage from './pages/owner/profile';
 import OwnerWorkspacePage from './pages/owner/workspace';
 import VisitorLayout from './pages/vistor/layout';
 import VisitorDashboard from './pages/vistor/dashboard';
+import RecruiterLayout from './pages/recruiter/layout';
+import RecruiterDashboard from './pages/recruiter/dashboard';
 
 const MAINTENANCE_MODE = false;
 
@@ -73,7 +75,8 @@ function Layout({ children }) {
     const hideLayout =
         NO_LAYOUT_ROUTES.includes(location.pathname) ||
         location.pathname.startsWith('/owner') ||
-        location.pathname.startsWith('/vistor');
+        location.pathname.startsWith('/vistor') ||
+        location.pathname.startsWith('/recruiter');
 
     return (
         <div className="App">
@@ -129,6 +132,16 @@ function App() {
                         <Route path="inbox" element={<OwnerWorkspacePage />} />
                         <Route path="alerts" element={<OwnerWorkspacePage />} />
                         <Route path="profile" element={<OwnerProfilePage />} />
+                    </Route>
+                    <Route path="/recruiter" element={<RecruiterLayout />}>
+                        <Route index element={<Navigate to="overview" replace />} />
+                        <Route path="overview" element={<RecruiterDashboard section="overview" />} />
+                        <Route path="profile" element={<RecruiterDashboard section="profile" />} />
+                        <Route path="projects" element={<RecruiterDashboard section="projects" />} />
+                        <Route path="certificates" element={<RecruiterDashboard section="certificates" />} />
+                        <Route path="skills" element={<RecruiterDashboard section="skills" />} />
+                        <Route path="resume" element={<RecruiterDashboard section="resume" />} />
+                        <Route path="contact" element={<RecruiterDashboard section="contact" />} />
                     </Route>
                 </Routes>
             </Layout>
