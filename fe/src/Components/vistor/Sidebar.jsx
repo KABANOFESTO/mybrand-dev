@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { NavLink, useLocation } from 'react-router-dom';
 
-const OwnerSidebar = ({ items, isOpen, onClose }) => {
+const VisitorSidebar = ({ items, isOpen, onClose }) => {
     const location = useLocation();
     const activeItem = items.find((item) => item.path === location.pathname);
 
@@ -16,6 +16,7 @@ const OwnerSidebar = ({ items, isOpen, onClose }) => {
             />
 
             <aside
+                id="visitor-sidebar"
                 className={`fixed inset-y-0 left-0 z-50 flex w-[84vw] max-w-[280px] flex-col
           bg-[#10121a] border-r border-[#262a38] font-sans
           transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]
@@ -41,11 +42,15 @@ const OwnerSidebar = ({ items, isOpen, onClose }) => {
 
                     {/* nav */}
                     <nav
-                        aria-label="Owner navigation"
+                        aria-label="Dashboard navigation"
                         className="flex flex-1 flex-col gap-0.5 overflow-y-auto px-3 py-3.5
               bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px)]
               bg-[length:100%_100%] bg-[position:27px_0] bg-no-repeat"
                     >
+                        <p className="mb-1.5 mt-1 flex items-center gap-2 px-3 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-[#565c70]">
+                            <i className="bi bi-grid-1x2-fill text-[#f2b84b]/80" aria-hidden="true" />
+                            Dashboard
+                        </p>
                         {items.map((item) => (
                             <NavLink
                                 key={item.id}
@@ -56,7 +61,7 @@ const OwnerSidebar = ({ items, isOpen, onClose }) => {
                             >
                                 {({ isActive }) => (
                                     <span
-                                        className={`flex items-center gap-2.5 rounded-lg border-l-2 py-2.5 pl-2 pr-2.5
+                                        className={`flex items-center gap-2.5 rounded-lg border-l-2 py-2.5 pl-5 pr-2.5
                       text-sm font-medium transition-colors duration-150
                       focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f2b84b]
                       ${isActive
@@ -113,7 +118,7 @@ const OwnerSidebar = ({ items, isOpen, onClose }) => {
     );
 };
 
-OwnerSidebar.propTypes = {
+VisitorSidebar.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     items: PropTypes.arrayOf(
         PropTypes.shape({
@@ -126,4 +131,4 @@ OwnerSidebar.propTypes = {
     onClose: PropTypes.func.isRequired,
 };
 
-export default OwnerSidebar;
+export default VisitorSidebar;
