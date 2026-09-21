@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import "../../CSS/auth.css";
 import logo from "/home.png";
+import CodeBackdrop from "../../Components/auth/CodeBackdrop";
 
 const validateSignupForm = ({ fullName, email, password, confirmPassword }) => {
   if (!fullName.trim()) return "Please enter your full name.";
@@ -118,6 +119,7 @@ function SignupPage() {
 
   return (
     <section className="login-page auth-page auth-page-signup">
+      <CodeBackdrop />
       <div className="corner tl">
         <CornerSVG />
       </div>

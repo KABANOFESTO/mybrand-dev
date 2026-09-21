@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../../CSS/auth.css";
 import logo from "/home.png";
+import CodeBackdrop from "../../Components/auth/CodeBackdrop";
 
 const SOCIAL_PROVIDERS = [
   { id: "google", label: "Google" },
@@ -131,6 +132,7 @@ function LoginPage() {
 
   return (
     <section className="login-page">
+      <CodeBackdrop />
       <div className="corner tl">
         <CornerSVG />
       </div>
